@@ -1,6 +1,7 @@
 import {LoginForm} from "./auth/Login.js";
-import {fetchUsers} from "./data/provider.js";
+import {fetchAll} from "./data/provider.js";
 import {GiffyGram} from "./GiffyGram.js";
+import {GetPosts} from "./Post/PostProvider.js";
 import {GetUsers} from "./User/UserProvider.js";
 
 const applicationElement = document.querySelector(".giffygram");
@@ -15,6 +16,8 @@ export const renderApp = () => {
   }
 };
 
-renderApp();
-
-fetchUsers().then(() => console.log(GetUsers()));
+fetchAll().then(() => {
+  renderApp();
+  console.log(GetUsers());
+  console.log(GetPosts());
+});
