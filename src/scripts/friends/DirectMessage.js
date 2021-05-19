@@ -4,8 +4,8 @@ export const DirectMessage = () => {
     let html = `
         <div>
             <label class="send__user" for="userSend">Send to</label>
-                <select name="userSend" id="userSend">
-                    <option value=""></option>
+                <select name="userSend" id="userSend" class="input">
+                    <option value="" ></option>
                 </select>
         </div>
         <div>
@@ -20,15 +20,26 @@ export const DirectMessage = () => {
     return html
 }
 // LINK TO CONTAINER
-const mainContainer = document.querySelector(".giffygram")
+// const mainContainer = document.querySelector(".giffygram")
 
-mainContainer.addEventListener(
-    "click",
-    clickEvent => {
-        if (clickEvent.target.id === "save__button") {
-            
-        }
-    }
-)
+// mainContainer.addEventListener(
+//     "click",
+//     clickEvent => {
+//         if (clickEvent.target.id === "save__button") {
+//             const sendToUser = document.querySelector("input[name='userSend']").value
+//             const sendMessage = document.querySelector("input[name='sendText']").value
+        
+//             const sendToSendAPI = {
+//                 userId:,
+//                 recipientId: sendToUser,
+//                 text: sendMessage,
+//                 read:,
+//                 id:
+//             }
+        
+//         }
+
+//     }
+// )
 
 
