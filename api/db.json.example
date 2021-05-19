@@ -1,3 +1,163 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "name": "Ray Medrano",
+      "email": "ray@medrano.com",
+      "password": "ray"
+    },
+    {
+      "id": 2,
+      "name": "Meg Ducharme",
+      "email": "meg@ducharme.com",
+      "password": "meg"
+    },
+    {
+      "id": 3,
+      "name": "Mark Ellis",
+      "email": "mark@ellis.com",
+      "password": "mark"
+    },
+    {
+      "id": 4,
+      "name": "Daniella Agnoletti",
+      "email": "daniella@agnoletti.com",
+      "password": "daniella"
+    },
+    {
+      "id": 5,
+      "name": "Kimmy Bird",
+      "email": "kimmy@bird.com",
+      "password": "kimmy"
+    },
+    {
+      "id": 6,
+      "name": "Emily Lemmon",
+      "email": "emily@lemmon.com",
+      "password": "emily"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 1,
+      "title": "My first post",
+      "imageURL": "https://media.giphy.com/media/3oz8xyUoD2HlTIcdTW/giphy.gif",
+      "description": "Jianbing butcher post-ironic brunch marfa, listicle quinoa kickstarter vinyl poke cornhole snackwave yr flexitarian.",
+      "timestamp": 1508080619498
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "title": "Dinner",
+      "imageURL": "https://media.giphy.com/media/4RslNp4SUqAoM/giphy.gif",
+      "description": "Messenger bag hella gochujang adaptogen, aesthetic sartorial before they sold out franzen sustainable thundercats.",
+      "timestamp": 1497580619498
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "title": "Graduation!",
+      "imageURL": "https://media.giphy.com/media/lSPlEENLTonvclZP44/giphy.gif",
+      "description": "Pop-up biodiesel pickled crucifix. Tousled succulents banjo bicycle rights.",
+      "timestamp": 1528720619498
+    },
+    {
+      "title": "Learning JavaScript",
+      "imageURL": "https://media.giphy.com/media/S9dN7OWFj8GoRhTIuL/giphy-downsized.gif",
+      "description": "Ethical chillwave jianbing ramps plaid subway tile.",
+      "userId": 2,
+      "timestamp": 1617396786968,
+      "id": 4
+    }
+  ],
+  "likes": [
+    {
+      "id": 1,
+      "userId": 1,
+      "postId": 2
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "postId": 2
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "postId": 1
+    },
+    {
+      "userId": 3,
+      "postId": 4,
+      "id": 4
+    }
+  ],
+  "messages": [
+    {
+      "userId": 2,
+      "recipientId": 3,
+      "text": "Selvage la croix prism truffaut cray offal lumbersexual bespoke skateboard. Next level chia enamel pin, wayfarers copper mug jean shorts leggings.",
+      "read": false,
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "recipientId": 3,
+      "text": "Occupy pour-over chambray pitchfork woke vinyl. Drinking vinegar humblebrag banh mi lo-fi fanny pack hella cred 3 wolf moon air plant bitters meggings man braid migas narwhal. Tacos chia neutra, tumeric semiotics raw denim cardigan single-origin coffee health goth mlkshk coloring book vinyl schlitz.",
+      "read": false,
+      "id": 2
+    },
+    {
+      "userId": 3,
+      "recipientId": 3,
+      "text": "Poke church-key single-origin coffee art party stumptown hoodie, vice offal. Chambray intelligentsia DIY portland kogi. Meh hexagon pug everyday carry brooklyn poutine knausgaard ugh.",
+      "read": false,
+      "id": 3
+    },
+    {
+      "userId": 1,
+      "recipientId": 2,
+      "text": "Live-edge marfa williamsburg lomo la croix organic etsy seitan pop-up messenger bag iceland. Meggings 3 wolf moon street art, dreamcatcher slow-carb selvage butcher. Cliche snackwave art party, biodiesel flexitarian jianbing ramps disrupt neutra sriracha street art flannel tattooed keffiyeh.",
+      "read": false,
+      "id": 4
+    },
+    {
+      "userId": 2,
+      "recipientId": 6,
+      "read": false,
+      "text": "Where did you find that?",
+      "id": 5
+    },
+    {
+      "userId": 4,
+      "recipientId": 6,
+      "text": "Hi, Emily, I love your new gif",
+      "id": 6
+    },
+    {
+      "userId": 4,
+      "recipientId": 1,
+      "text": "Ray, that Santa looks just like you.",
+      "read": true,
+      "id": 7
+    }
+  ],
+  "follows": [
+    {
+      "id": 1,
+      "userId": 1,
+      "followingId": 2
+    },
+    {
+      "id": 2,
+      "userId": 3,
+      "followingId": 2
+    },
+    {
+      "id": 3,
+      "userId": 2,
+      "followingId": 1
+    }
+  ]
 }
