@@ -15,7 +15,7 @@ export const rawUsers = () => applicationState.users.map((t) => ({...t}));
 const apiURL = "http://localhost:8081";
 
 export const fetchUsers = () => {
-  return fetch(`${apiURL}/products`)
+  return fetch(`${apiURL}/users`)
     .then((response) => response.json())
     .then((data) => (applicationState.users = data));
 };
