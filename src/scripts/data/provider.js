@@ -14,6 +14,7 @@ export const rawUsers = () => applicationState.users.map((t) => ({...t}));
 
 const apiURL = "http://localhost:8081";
 
+// just here to test User data provider
 export const fetchUsers = () => {
   return fetch(`${apiURL}/users`)
     .then((response) => response.json())
