@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+## HOW TO CUSTOMIZE FOR YOUR PROJECTS:
+#   edit the VARS below
+#   open each .sh file mentioned here and edit VARS if needed (optional)
+
+## USAGE ==>> ./localserve from your repository root
+
+# ===================================================================> VARS
+# localserve will make sure you only run it from the right folder
+WORKING_DIR="giffygram" 
+
+# a clean copy of your mock database in case we need to reinitialize
+INITDBFILE="./api/db.json.example"
+
+# location of your index.html etc.
+SRV_SRCDIR="./src"
+
+# where you want to keep your db file
+JSRV_DBFILE="./api/db.json"
+
+# port numbers for json-server and serve
+JSRV_PORT="8081"
+SRV_PORT="8080"
+
+SCRIPT_DIR="localserve"
+
+## ------- FROM HERE ON OUT, IT'S ALL BASH: YOU'VE BEEN WARNED -------
+# ===================================================================> EXEC
+# check to see if already running
+STARTSCRIPT=start-servers.sh
+[[ -n $(ps | grep -v grep | grep $STARTSCRIPT ) ]] && \
+    echo localserve already running && exit 201
+
+# check our working directory
+[[ $(basename $(pwd)) != $WORKING_DIR ]] && \
+    echo please run me from $WORKING_DIR or override with '-f' && exit 200
+
+# init the database
+./$SCRIPT_DIR/init-database.sh $INITDBFILE $JSRV_DBFILE
+
+echo # spacer
+
+# start the servers
+./$SCRIPT_DIR/$STARTSCRIPT $JSRV_PORT $JSRV_DBFILE $SRV_PORT $SRV_SRCDIR
