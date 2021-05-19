@@ -1,3 +1,4 @@
+import { LoginForm } from "./auth/Login.js"
 import { GiffyGram } from "./GiffyGram.js"
 
 const applicationElement = document.querySelector(".giffygram")
@@ -11,3 +12,5 @@ export const renderApp = () => {
         applicationElement.innerHTML = LoginForm()
     }
 }
+
+renderApp()
