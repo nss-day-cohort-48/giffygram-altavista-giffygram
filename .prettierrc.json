@@ -1,0 +1,10 @@
+{
+    "bracketSpacing": false,
+    "endOfLine": "lf",
+    "overrides": [{
+        "files": "scripts/database.js",
+        "options": {
+            "printWidth": 100
+        }
+    }]
+}
