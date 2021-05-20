@@ -1,4 +1,4 @@
-// import { getUsers } from "../data/provider.js"
+ import { getUsers } from "../User/UserProvider.js"
 
 
 document.addEventListener("click", clickEvent => {
