@@ -1,29 +1,28 @@
 import { getPosts } from "../Post/PostProvider.js";
+
  
 
 export const postFeed = () => {
     const posts = getPosts()
 //    MAP METHOD AND JOIN METHOD
-let htmlString = `<h1>POSTS</h1>`;
+let htmlString = ``;
 
 
 const postsHTML = posts.map(
     (p) => {
+        const postDate = new Date(p.timestamp)
+        
         return `
-        <div class="user__id">${p.id}</div>
         <div class="user__title">${p.title}</div>
-        <img src={require('../images/' + ${p.imageURL})} />
+        <img src= "${p.imageURL}"/>
         <div class="user__description">${p.description}</div>
-        <div class="user__timestamp__user">Post by ${p.userId} at ${p.timestamp}</div>
+        <div class="user__post">Posted by ${p.userName} at ${postDate.toLocaleString()}.</div>
         `
     });
+
 const listOfPosts = postsHTML.join("")
 htmlString += listOfPosts
-htmlString += testImage
 return htmlString
 
 }
 
-// const images = array.map(image => {
-//     return <img key={image} src={require(`./icons/${image}.png`)} className="img-responsive" />
-// });
