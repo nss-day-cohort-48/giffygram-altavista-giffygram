@@ -1,4 +1,4 @@
-import {rawMessages, rawUsers} from "../data/dataAccess.js";
+import {postMessage, rawMessages, rawUsers} from "../data/dataAccess.js";
 
 export const getMessages = () => {
   let messages = rawMessages();
@@ -17,4 +17,20 @@ const addUserNames = (messages, users) => {
     return m;
   });
   return messages;
+};
+
+// TODO more validation
+//      - does that userId exist?
+//      - does that recipientId match a valid userId?
+//      - is the text... good?
+export const newMessage = (userId, recipientId, text) => {
+  if (userId && recipientId && text) {
+    postMessage({
+      userId: userId,
+      recipientId: recipientId,
+      text: text,
+      read: false,
+      timestamp: Date.now(),
+    });
+  }
 };

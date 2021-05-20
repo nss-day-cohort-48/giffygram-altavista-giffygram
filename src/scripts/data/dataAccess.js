@@ -61,6 +61,10 @@ const jsonPOST = (obj) => ({
   body: JSON.stringify(obj),
 });
 
+export const postUser = (userObj) => {
+  return fetch(`${apiURL}/posts`, jsonPOST(userObj));
+};
+
 export const postMessage = (messageObj) => {
   return fetch(`${apiURL}/posts`, jsonPOST(messageObj));
 };
