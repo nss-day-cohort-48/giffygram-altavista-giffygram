@@ -15,9 +15,7 @@ const applicationState = {
 // these tables have their own providers that do more than just return the raw data
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
-
-// these tables are always used raw so no need for a rawTable function
-export const GetLikes = () => applicationState.likes.map((like) => ({...like}));
+export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
 
 export const fetchAll = () => fetchUsers().then(fetchPosts).then(fetchLikes);
 

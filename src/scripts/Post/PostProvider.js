@@ -1,13 +1,12 @@
-import {rawPosts, rawUsers, GetLikes} from "../data/provider.js";
+import {rawPosts, rawUsers, rawLikes} from "../data/provider.js";
 
 // we aren't using it yet but if we want to add logic
 //      to getting the Posts data we can do it here
 export const GetPosts = () => {
   let posts = rawPosts();
-  const likes = GetLikes();
 
   posts = addUserNames(posts, rawUsers());
-  posts = addLikes(posts, likes);
+  posts = addLikes(posts, rawLikes());
 
   return posts;
 };
