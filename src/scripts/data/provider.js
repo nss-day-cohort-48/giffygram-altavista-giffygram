@@ -10,13 +10,15 @@ const applicationState = {
   users: [],
   likes: [],
   posts: [],
+  messages: [],
 };
 
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
 
-export const fetchAll = () => fetchUsers().then(fetchPosts).then(fetchLikes);
+export const fetchAll = () =>
+  fetchUsers().then(fetchPosts).then(fetchLikes).then(fetchMessages);
 
 const apiURL = "http://localhost:8081";
 const fetchPosts = () => {
@@ -35,4 +37,10 @@ const fetchUsers = () => {
   return fetch(`${apiURL}/users`)
     .then((response) => response.json())
     .then((data) => (applicationState.users = data));
+};
+
+const fetchMessages = () => {
+  return fetch(`${apiURL}/messages`)
+    .then((response) => response.json())
+    .then((data) => (applicationState.messages = data));
 };
