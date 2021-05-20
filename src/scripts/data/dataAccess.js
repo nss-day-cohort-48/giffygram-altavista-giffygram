@@ -13,8 +13,6 @@ const applicationState = {
   messages: [],
 };
 
-export const postMessage = (messageObj) => {};
-
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
@@ -46,4 +44,35 @@ const fetchMessages = () => {
   return fetch(`${apiURL}/messages`)
     .then((response) => response.json())
     .then((data) => (applicationState.messages = data));
+};
+
+// since we don't have a like provider, we build the object here
+export const newLike = (userId, postId) =>
+  postLike({userId: userId, postId: postId});
+
+// since we don't have a follow provider, we build the object here
+export const newFollow = (userId, followingId) =>
+  postFollow({userId: userId, followingId: followingId});
+
+// helper function for creating POSTable JSON objects
+const jsonPOST = (obj) => ({
+  headers: {"Content-Type": "application/json"},
+  method: "POST",
+  body: JSON.stringify(obj),
+});
+
+export const postMessage = (messageObj) => {
+  return fetch(`${apiURL}/posts`, jsonPOST(messageObj));
+};
+
+export const postPost = (postObj) => {
+  return fetch(`${apiURL}/posts`, jsonPOST(postObj));
+};
+
+const postLike = (likeObj) => {
+  return fetch(`${apiURL}/likes`, jsonPOST(likeObj));
+};
+
+export const postFollow = (followObj) => {
+  return fetch(`${apiURL}/follows`, jsonPOST(followObj));
 };
