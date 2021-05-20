@@ -80,11 +80,11 @@ const jsonPOST = (obj) => ({
 });
 
 export const postUser = (userObj) => {
-  return fetch(`${apiURL}/posts`, jsonPOST(userObj));
+  return fetch(`${apiURL}/users`, jsonPOST(userObj));
 };
 
 export const postMessage = (messageObj) => {
-  return fetch(`${apiURL}/posts`, jsonPOST(messageObj));
+  return fetch(`${apiURL}/messages`, jsonPOST(messageObj));
 };
 
 export const postPost = (postObj) => {

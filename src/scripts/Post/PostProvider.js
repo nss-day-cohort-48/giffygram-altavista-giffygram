@@ -1,5 +1,4 @@
-import {postPost} from "../data/dataAccess.js";
-import {rawPosts, rawUsers, rawLikes} from "../data/provider.js";
+import {postPost, rawPosts, rawUsers, rawLikes} from "../data/dataAccess.js";
 
 // TODO more validation
 export const newPost = (userId, title, imageURL, description) => {
