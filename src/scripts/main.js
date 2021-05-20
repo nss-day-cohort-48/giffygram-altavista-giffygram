@@ -1,5 +1,5 @@
 import {LoginForm} from "./auth/Login.js";
-import {fetchAll} from "./data/provider.js";
+import {fetchAll} from "./data/dataAccess.js";
 import {GiffyGram} from "./GiffyGram.js";
 import {getMessages} from "./Message/MessageProvider.js";
 

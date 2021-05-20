@@ -1,4 +1,4 @@
-import {rawLikes, rawPosts, rawUsers} from "../data/provider.js";
+import {rawLikes, rawPosts, rawUsers} from "../data/dataAccess.js";
 
 // we aren't using it yet but if we want to add logic
 //      to getting the Users data we can do it here

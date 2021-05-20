@@ -1,4 +1,4 @@
-import {rawMessages, rawUsers} from "../data/provider.js";
+import {rawMessages, rawUsers} from "../data/dataAccess.js";
 
 export const getMessages = () => {
   let messages = rawMessages();
