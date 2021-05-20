@@ -9,6 +9,7 @@
 # ===================================================================> VARS
 # localserve will make sure you only run it from the right folder
 WORKING_DIR="giffygram" 
+alt_dir="giffygram-altavista-giffygram"
 
 # a clean copy of your mock database in case we need to reinitialize
 INITDBFILE="./api/db.json.example"
@@ -33,7 +34,7 @@ STARTSCRIPT=start-servers.sh
     echo localserve already running && exit 201
 
 # check our working directory
-[[ $(basename $(pwd)) != $WORKING_DIR ]] && \
+[[ $(basename $(pwd)) != $WORKING_DIR ]] && [[ $(basename $(pwd)) != $alt_dir ]] && \
     echo please run me from $WORKING_DIR or override with '-f' && exit 200
 
 # init the database

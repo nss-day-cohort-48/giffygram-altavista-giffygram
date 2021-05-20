@@ -8,14 +8,30 @@ const applicationState = {
     displayMessages: false,
   },
   users: [],
+  likes: [],
+  posts: [],
 };
 
-export const rawUsers = () => applicationState.users.map((t) => ({...t}));
+export const rawUsers = () => applicationState.users.map((user) => ({...user}));
+export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
+export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
+
+export const fetchAll = () => fetchUsers().then(fetchPosts).then(fetchLikes);
 
 const apiURL = "http://localhost:8081";
+const fetchPosts = () => {
+  return fetch(`${apiURL}/posts`)
+    .then((response) => response.json())
+    .then((data) => (applicationState.posts = data));
+};
 
-// just here to test User data provider
-export const fetchUsers = () => {
+const fetchLikes = () => {
+  return fetch(`${apiURL}/likes`)
+    .then((response) => response.json())
+    .then((data) => (applicationState.likes = data));
+};
+
+const fetchUsers = () => {
   return fetch(`${apiURL}/users`)
     .then((response) => response.json())
     .then((data) => (applicationState.users = data));
