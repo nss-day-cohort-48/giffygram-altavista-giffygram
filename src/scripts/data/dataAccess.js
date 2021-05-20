@@ -13,6 +13,8 @@ const applicationState = {
   messages: [],
 };
 
+export const postMessage = (messageObj) => {};
+
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
