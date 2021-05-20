@@ -13,15 +13,22 @@ const applicationState = {
   messages: [],
 };
 
+// SETTERS ================================================================>>
+// export const setDisplayFavorites
+
+// GETTERS ================================================================>>
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
 export const rawMessages = () => applicationState.messages.map((m) => ({...m}));
 
+// fetch stuff
+const apiURL = "http://localhost:8081";
+
+// fetch GET ==============================================================>>
 export const fetchAll = () =>
   fetchUsers().then(fetchPosts).then(fetchLikes).then(fetchMessages);
 
-const apiURL = "http://localhost:8081";
 const fetchPosts = () => {
   return fetch(`${apiURL}/posts`)
     .then((response) => response.json())
@@ -47,13 +54,24 @@ const fetchMessages = () => {
 };
 
 // since we don't have a like provider, we build the object here
-export const newLike = (userId, postId) =>
-  postLike({userId: userId, postId: postId});
+// TODO: validate that the post exists
+export const newLike = (userId, postId) => {
+  if (userId && postId) {
+    return postLike({userId: userId, postId: postId});
+  }
+  return "like incomplete";
+};
 
 // since we don't have a follow provider, we build the object here
-export const newFollow = (userId, followingId) =>
-  postFollow({userId: userId, followingId: followingId});
+// TODO: validate that someone isn't trying to follow themselves
+export const newFollow = (userId, followingId) => {
+  if (userId && followingId) {
+    postFollow({userId: userId, followingId: followingId});
+  }
+  return "follow incomplete";
+};
 
+// fetch POST ==============================================================>>
 // helper function for creating POSTable JSON objects
 const jsonPOST = (obj) => ({
   headers: {"Content-Type": "application/json"},
@@ -77,6 +95,6 @@ const postLike = (likeObj) => {
   return fetch(`${apiURL}/likes`, jsonPOST(likeObj));
 };
 
-export const postFollow = (followObj) => {
+const postFollow = (followObj) => {
   return fetch(`${apiURL}/follows`, jsonPOST(followObj));
 };

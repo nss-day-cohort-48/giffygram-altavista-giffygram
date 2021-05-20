@@ -1,5 +1,22 @@
 import {postMessage, rawMessages, rawUsers} from "../data/dataAccess.js";
 
+// TODO more validation
+//      - does that userId exist?
+//      - does that recipientId match a valid userId?
+//      - is the text... good?
+export const newMessage = (userId, recipientId, text) => {
+  if (userId && recipientId && text) {
+    return postMessage({
+      userId: userId,
+      recipientId: recipientId,
+      text: text,
+      read: false,
+      timestamp: Date.now(),
+    });
+  }
+  return "message incomplete";
+};
+
 export const getMessages = () => {
   let messages = rawMessages();
   messages = addUserNames(messages, rawUsers());
@@ -17,20 +34,4 @@ const addUserNames = (messages, users) => {
     return m;
   });
   return messages;
-};
-
-// TODO more validation
-//      - does that userId exist?
-//      - does that recipientId match a valid userId?
-//      - is the text... good?
-export const newMessage = (userId, recipientId, text) => {
-  if (userId && recipientId && text) {
-    postMessage({
-      userId: userId,
-      recipientId: recipientId,
-      text: text,
-      read: false,
-      timestamp: Date.now(),
-    });
-  }
 };
