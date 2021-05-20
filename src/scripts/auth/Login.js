@@ -1,29 +1,30 @@
  import { getUsers } from "../User/UserProvider.js"
 
+document.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "loginButton") {
+    let foundUser = null;
+    const userState = getUsers();
 
-document.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "loginButton") {
-        let foundUser = null
-        const userState = getUsers()
+    const email = document.querySelector("input[name='email']").value;
+    const password = document.querySelector("input[name='password']").value;
 
-        const email = document.querySelector("input[name='email']").value
-        const password = document.querySelector("input[name='password']").value
-
-        for (const user of userState) {
-            if (user.email === email && user.password === password) {
-                foundUser = user
-            }
-        }
-
-        if (foundUser !== null) {
-            localStorage.setItem("gg_user", foundUser.id)
-            document.querySelector(".giffygram").dispatchEvent(new CustomEvent("stateChanged"))
-        }
+    for (const user of userState) {
+      if (user.email === email && user.password === password) {
+        foundUser = user;
+      }
     }
-})
+
+    if (foundUser !== null) {
+      localStorage.setItem("gg_user", foundUser.id);
+      document
+        .querySelector(".giffygram")
+        .dispatchEvent(new CustomEvent("stateChanged"));
+    }
+  }
+});
 
 export const LoginForm = () => {
-    return `
+  return `
         <div class="loginForm">
             <form>
                 <fieldset>
@@ -37,5 +38,5 @@ export const LoginForm = () => {
             </form>
             <button id="loginButton">Login</button>
         </div>
-    `
-}
+    `;
+};

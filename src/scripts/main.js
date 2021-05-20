@@ -1,8 +1,9 @@
 import {LoginForm} from "./auth/Login.js";
-import {fetchAll} from "./data/provider.js";
+import {fetchAll} from "./data/dataAccess.js";
 import {GiffyGram} from "./GiffyGram.js";
 import {getPosts} from "./Post/PostProvider.js";
 import {getUsers} from "./User/UserProvider.js";
+import {getMessages} from "./Message/MessageProvider.js";
 
 const applicationElement = document.querySelector(".giffygram");
 
@@ -14,10 +15,12 @@ export const renderApp = () => {
   } else {
     applicationElement.innerHTML = LoginForm();
   }
+
+  console.log(getMessages());
 };
 
-fetchAll().then(() => {
-  renderApp();
-  console.log(getUsers());
-  console.log(getPosts());
-});
+const fetchAndRender = () => fetchAll().then(renderApp);
+
+fetchAndRender();
+
+applicationElement.addEventListener("stateChanged", fetchAndRender);
