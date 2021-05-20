@@ -16,7 +16,7 @@ const applicationState = {
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
-export const rawMessages = () => applicationState.likes.map((m) => ({...m}));
+export const rawMessages = () => applicationState.messages.map((m) => ({...m}));
 
 export const fetchAll = () =>
   fetchUsers().then(fetchPosts).then(fetchLikes).then(fetchMessages);

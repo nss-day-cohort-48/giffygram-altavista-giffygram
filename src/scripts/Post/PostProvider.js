@@ -1,4 +1,4 @@
-import {rawPosts, rawUsers, rawLikes} from "../data/provider.js";
+import {rawPosts, rawUsers, rawLikes} from "../data/dataAccess.js";
 
 // we aren't using it yet but if we want to add logic
 //      to getting the Posts data we can do it here
@@ -7,6 +7,8 @@ export const getPosts = () => {
 
   posts = addUserNames(posts, rawUsers());
   posts = addLikes(posts, rawLikes());
+
+  posts.sort(compareTimestamps);
 
   return posts;
 };
@@ -27,4 +29,12 @@ const addUserNames = (posts, users) => {
     return p;
   });
   return posts;
+};
+
+const compareTimestamps = (objA, objB) => {
+  if (objA.timestamp < objB.timestamp) {
+    return 1;
+  } else {
+    return -1;
+  }
 };
