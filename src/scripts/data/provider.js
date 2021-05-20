@@ -12,7 +12,6 @@ const applicationState = {
   posts: [],
 };
 
-// these tables have their own providers that do more than just return the raw data
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
