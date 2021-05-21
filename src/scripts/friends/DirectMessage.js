@@ -1,11 +1,14 @@
+import { getUsers } from "../User/UserProvider.js"
 
 
-export const DirectMessage = () => {
+const users = getUsers()
+
+export const DirectMessage = (u) => {
     let html = `
         <div>
             <label class="send__user" for="userSend">Send to</label>
                 <select name="userSend" id="userSend" class="input">
-                    <option value="" ></option>
+                    <option value="user__select ${u.id}">${u.name}</option>
                 </select>
         </div>
         <div>
