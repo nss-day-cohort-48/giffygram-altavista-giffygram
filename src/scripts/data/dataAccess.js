@@ -84,6 +84,7 @@ export const postUser = (userObj) => {
 };
 
 export const postMessage = (messageObj) => {
+  debugger
   return fetch(`${apiURL}/messages`, jsonPOST(messageObj));
 };
 

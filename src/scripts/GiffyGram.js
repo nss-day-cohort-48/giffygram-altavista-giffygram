@@ -1,5 +1,6 @@
 import { postFeed } from "./feed/PostList.js"
-import { DirectMessage } from "./friends/DirectMessage.js"
+import { DirectMessage } from "./message/MessageForm.js"
+
 
 
 export const GiffyGram = () => {
