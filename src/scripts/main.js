@@ -9,7 +9,7 @@ const applicationElement = document.querySelector(".giffygram");
 
 export const renderApp = () => {
   const user = parseInt(localStorage.getItem("gg_user"));
-
+  console.log(getPosts());
   if (user) {
     applicationElement.innerHTML = GiffyGram();
   } else {
