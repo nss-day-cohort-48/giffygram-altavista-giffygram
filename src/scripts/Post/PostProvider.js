@@ -37,7 +37,6 @@ export const getPosts = () => {
 };
 
 export const getFeedPosts = () => {
-  debugger;
   let posts = getPosts();
   const fs = feedState();
   const currentUserId = localStorage.getItem("gg_user");
