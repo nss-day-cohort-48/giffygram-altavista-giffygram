@@ -13,6 +13,11 @@ const applicationState = {
   messages: [],
 };
 
+export const setDisplayFavorites = (fav) => {
+  applicationState.feed.displayFavorites = fav;
+  applicationElement.dispatchEvent(new CustomEvent("stateChanged"));
+};
+
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));

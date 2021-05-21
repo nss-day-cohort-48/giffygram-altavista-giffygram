@@ -1,20 +1,22 @@
+import {setDisplayFavorites} from "../data/dataAccess.js";
+
 const container = document.querySelector(".giffygram");
 
 container.addEventListener("change", (event) => {
-  if (event.target.id === "") {
+  if (event.target.id === "yearSelection") {
     //add the set export to this | setExample(parseInt(event.target.value))
   }
 });
 
 container.addEventListener("change", (event) => {
-  if (event.target.id === "") {
+  if (event.target.id === "userSelection") {
     //add the set export to this | setExample(parseInt(event.target.value))
   }
 });
 
 container.addEventListener("change", (event) => {
-  if (event.target.id === "") {
-    //add the set export to this | setExample(parseInt(event.target.value))
+  if (event.target.id === "showOnlyFavorites") {
+    setDisplayFavorites(parseInt(event.target.value));
   }
 });
 
