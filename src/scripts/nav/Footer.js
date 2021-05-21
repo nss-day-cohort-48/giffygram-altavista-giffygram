@@ -1,4 +1,4 @@
-import {setDisplayFavorites} from "../data/dataAccess.js";
+//import {setDisplayFavorites} from "../data/dataAccess.js";
 
 const container = document.querySelector(".giffygram");
 
