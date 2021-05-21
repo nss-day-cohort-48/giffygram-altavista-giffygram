@@ -1,5 +1,10 @@
+import {
+  setDisplayByUser,
+  setDisplayByYear,
+  toggleDisplayFavorites,
+} from "./data/dataAccess.js";
 import {newMessage} from "./Message/MessageProvider.js";
-import {newPost} from "./Post/PostProvider.js";
+import {getFeedPosts, newPost} from "./Post/PostProvider.js";
 
 export const makeTesters = () => {
   window.sendMessage = (userId, recvId, text) => {
@@ -18,6 +23,22 @@ export const makeTesters = () => {
         "https://media0.giphy.com/media/ZBJq9YnKoRimnTEaa0/giphy.gif?cid=ecf05e47xmew6rztl0ne9hcw0culqk1vi8gnwmbwnqdjd4sr&rid=giphy.gif&ct=g",
       desc || `-->> ${new Date().toLocaleString()}`
     ).then(responseOkay);
+  };
+
+  window.filterFavorites = () => {
+    toggleDisplayFavorites();
+  };
+
+  window.filterByYear = (year) => {
+    setDisplayByYear(year || "2020");
+  };
+
+  window.filterByUser = (userId) => {
+    setDisplayByUser(userId || 1);
+  };
+
+  window.feedPosts = () => {
+    console.log(getFeedPosts());
   };
 
   window.stateChanged = () =>

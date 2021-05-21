@@ -3,9 +3,12 @@ const applicationElement = document.querySelector(".giffygram");
 const applicationState = {
   currentUser: {},
   feed: {
-    chosenUser: null,
     displayFavorites: false,
     displayMessages: false,
+    displayByUser: false,
+    chosenUser: null,
+    displayByYear: false,
+    chosenYear: null,
   },
   users: [],
   likes: [],
@@ -14,9 +17,45 @@ const applicationState = {
 };
 
 // SETTERS ================================================================>>
-// export const setDisplayFavorites
+export const toggleDisplayFavorites = () => {
+  applicationState.feed.displayFavorites =
+    !applicationState.feed.displayFavorites;
+};
+
+// to turn off, call without a null or invalid year
+export const setDisplayByYear = (year) => {
+  const foundYear = applicationState.posts.find(
+    (p) => new Date(p.timestamp).getFullYear() === year
+  );
+  if (foundYear) {
+    applicationState.feed.setDisplayByYear = true;
+  } else {
+    applicationState.feed.setDisplayByYear = false;
+  }
+  applicationState.feed.chosenYear = foundYear;
+};
+
+// to turn off, call without a null or invalid id
+export const setDisplayByUser = (id) => {
+  let foundId;
+  const foundUser = applicationState.users.find((u) => u.id === id);
+  if (foundUser) {
+    foundId = foundUser.id;
+  }
+  if (foundId) {
+    applicationState.feed.displayByUser = true;
+  } else {
+    applicationState.feed.displayByUser = false;
+  }
+  applicationState.feed.chosenUser = foundId;
+};
+
+export const setDisplayMessage = (bool) => {
+  applicationState.feed.displayMessages = bool;
+};
 
 // GETTERS ================================================================>>
+export const feedState = () => ({...applicationState.feed});
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
