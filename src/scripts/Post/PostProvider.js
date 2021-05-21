@@ -1,4 +1,10 @@
-import {postPost, rawPosts, rawUsers, rawLikes} from "../data/dataAccess.js";
+import {
+  postPost,
+  rawPosts,
+  rawUsers,
+  rawLikes,
+  feedState,
+} from "../data/dataAccess.js";
 
 // TODO more validation
 export const newPost = (userId, title, imageURL, description) => {
@@ -14,6 +20,9 @@ export const newPost = (userId, title, imageURL, description) => {
   return "post incomplete";
 };
 
+export const getPostYears = () => rawPosts().map((p) => postYear(p));
+export const postYear = (post) => new Date(post.timestamp).getFullYear();
+
 // we aren't using it yet but if we want to add logic
 //      to getting the Posts data we can do it here
 export const getPosts = () => {
@@ -23,6 +32,30 @@ export const getPosts = () => {
   posts = addLikes(posts, rawLikes());
 
   posts.sort(compareTimestamps);
+
+  return posts;
+};
+
+export const getFeedPosts = () => {
+  let posts = getPosts();
+  const fs = feedState();
+  const currentUserId = localStorage.getItem("gg_user");
+
+  if (fs.displayFavorites) {
+    posts = posts.filter((p) =>
+      p.likes.find((l) => l.userId === parseInt(currentUserId))
+    );
+  }
+
+  if (fs.displayByUser) {
+    posts = posts.filter((p) => p.userId === fs.chosenUser);
+  }
+
+  if (fs.displayByYear) {
+    posts = posts.filter(
+      (p) => new Data(p.timestamp).getFullYear() === fs.chosenYear
+    );
+  }
 
   return posts;
 };
