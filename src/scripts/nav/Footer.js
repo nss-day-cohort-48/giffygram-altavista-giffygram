@@ -2,6 +2,7 @@ import {
   toggleDisplayFavorites,
   setDisplayByUser,
   rawUsers,
+  rawPosts,
 } from "../data/dataAccess.js";
 
 const container = document.querySelector(".giffygram");
@@ -28,15 +29,19 @@ container.addEventListener("change", (event) => {
 
 export const Footer = () => {
   const users = rawUsers();
-
+  const posts = rawPosts();
   return `
     <footer class="footer">
     <div class="footer__item">Posts Since
     <select id="yearSelection">
-    <option>2020</option>
-    <option>2019</option>
-    <option>2018</option>
-    <option>2017</option>
+    ${posts
+      .map((postObj) => {
+        return `
+      <option value="post--${postObj.id}">
+      ${postObj.timestamp}</option>
+      `;
+      })
+      .join("")}
     </select>
     </div>
     <div class="footer__item">Posts By User
