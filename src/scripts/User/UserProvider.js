@@ -22,3 +22,5 @@ const addLikes = (users, likes) =>
     u.likes = likes.filter((l) => l.userId === u.id);
     return u;
   });
+
+//   export const newUser = () => {}
