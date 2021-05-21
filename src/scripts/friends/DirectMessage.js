@@ -1,14 +1,25 @@
 import { getUsers } from "../User/UserProvider.js"
 
 
-const users = getUsers()
 
-export const DirectMessage = (u) => {
-    let html = `
+export const DirectMessage = () => {
+    const users = getUsers()
+    
+    // GETTING THE SENDER USER ID
+    
+    
+    let html = 
+
+    `
         <div>
             <label class="send__user" for="userSend">Send to</label>
                 <select name="userSend" id="userSend" class="input">
-                    <option value="user__select ${u.id}">${u.name}</option>
+                    <option value="user__select">Choose</option>
+                    ${users.map(
+                        (m) => {
+                            return `<option value="${m.id}">${m.name}</option>`
+                        }
+                    ).join("")}
                 </select>
         </div>
         <div>
@@ -22,27 +33,42 @@ export const DirectMessage = (u) => {
     `
     return html
 }
+
+
 // LINK TO CONTAINER
-// const mainContainer = document.querySelector(".giffygram")
+const mainContainer = document.querySelector(".giffygram")
 
-// mainContainer.addEventListener(
-//     "click",
-//     clickEvent => {
-//         if (clickEvent.target.id === "save__button") {
-//             const sendToUser = document.querySelector("input[name='userSend']").value
-//             const sendMessage = document.querySelector("input[name='sendText']").value
+mainContainer.addEventListener(
+    "click",
+    clickEvent => {
+        if (clickEvent.target.id === "save__button") {
+            const loggedInUser = users.map(
+                (u) => {
+                    return u.id
+                }
+            )
+            
+            // NEED TO CREATE:
+            // userSender data collector
+            // Boolean data collector
+            // message id
+            const userSender = document.querySelector(loggedInUser).value
+            const sendToUser = document.querySelector("input[name='userSend']").value
+            const sendMessage = document.querySelector("input[name='sendText']").value
+            const isRead = document.querySelector().value
+            const messageId = document.querySelector().value
         
-//             const sendToSendAPI = {
-//                 userId:,
-//                 recipientId: sendToUser,
-//                 text: sendMessage,
-//                 read:,
-//                 id:
-//             }
+            const sendToSendAPI = {
+                userId: userSender,
+                recipientId: sendToUser,
+                text: sendMessage,
+                read: isRead,
+                id: messageId
+            }
         
-//         }
+        }
 
-//     }
-// )
+    }
+)
 
 
