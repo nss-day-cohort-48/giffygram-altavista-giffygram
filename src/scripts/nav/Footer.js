@@ -1,4 +1,8 @@
-//import {setDisplayFavorites} from "../data/dataAccess.js";
+import {
+  toggleDisplayFavorites,
+  setDisplayByUser,
+  rawUsers,
+} from "../data/dataAccess.js";
 
 const container = document.querySelector(".giffygram");
 
@@ -10,17 +14,21 @@ container.addEventListener("change", (event) => {
 
 container.addEventListener("change", (event) => {
   if (event.target.id === "userSelection") {
-    //add the set export to this | setExample(parseInt(event.target.value))
+    setDisplayByUser(parseInt(event.target.value));
+    container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
 container.addEventListener("change", (event) => {
   if (event.target.id === "showOnlyFavorites") {
-    setDisplayFavorites(parseInt(event.target.value));
+    toggleDisplayFavorites(parseInt(event.target.value));
+    container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
 export const Footer = () => {
+  const users = rawUsers();
+
   return `
     <footer class="footer">
     <div class="footer__item">Posts Since
@@ -33,16 +41,19 @@ export const Footer = () => {
     </div>
     <div class="footer__item">Posts By User
     <select id="userSelection">
-    <option value="user--1">Ray Medrano</option>
-    <option value="user--2">Meg Ducharme</option>
-    <option value="user--3">Mark Ellis</option>
-    <option value="user--4">Daniella Agnoletti</option>
-    <option value="user--5">Kimmy Bird</option>
-    <option value="user--6">Emily Lemmon</option>
+    ${users
+      .map((userObj) => {
+        return `
+    <option value="user--${userObj.id}">
+    ${userObj.name}</option>
+    `;
+      })
+      .join("")}
+    
     </select>
     </div>
     <div class="footer__item">Show Only Favorites
-    <input id="showOnlyFavorites" type="checkbox">
+    <input id="showOnlyFavorites" type="checkbox" />
     </div>
     </footer>
     `;
