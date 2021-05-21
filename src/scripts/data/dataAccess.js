@@ -13,11 +13,6 @@ const applicationState = {
   messages: [],
 };
 
-export const setDisplayFavorites = (fav) => {
-  applicationState.feed.displayFavorites = fav;
-  applicationElement.dispatchEvent(new CustomEvent("stateChanged"));
-};
-
 // SETTERS ================================================================>>
 // export const setDisplayFavorites
 
