@@ -7,8 +7,8 @@ import {postMessage, rawMessages, rawUsers} from "../data/dataAccess.js";
 export const newMessage = (userId, recipientId, text) => {
   if (userId && recipientId && text) {
     return postMessage({
-      userId: userId,
-      recipientId: recipientId,
+      userId: parseInt(userId),
+      recipientId: parseInt(recipientId),
       text: text,
       read: false,
       timestamp: Date.now(),
