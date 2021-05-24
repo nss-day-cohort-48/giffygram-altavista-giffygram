@@ -1,3 +1,4 @@
+import {setDisplayPostForm} from "../data/dataAccess.js";
 import {newPost} from "./PostProvider.js";
 
 export const PostForm = () => {
@@ -24,14 +25,27 @@ export const PostForm = () => {
   return html;
 };
 
-// NEED TO CHANGE THIS MONDAY FINISH CLICKEVENTS
+// CREATING HTML FOR .miniMode
+export const MiniMode = () => {
+  let html = `
+  <div class="miniMode" id="miniMode">Have a gif to post?</div>
+  `;
+  return html;
+};
+
 // LINK TO CONTAINER
 const mainContainer = document.querySelector(".giffygram");
-// We need = newPost = (userId, title, imageURL, description)
-// const userSender = parseInt(localStorage.getItem("gg_user"));
 
-//             const sendToUser = document.querySelector("#dmUser").value
-//             const sendMessage = document.querySelector("input[name='dmText']").value
+mainContainer.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "miniMode") {
+    setDisplayPostForm(true);
+    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+  } else {
+    setDisplayPostForm(false);
+  }
+});
+
+// Setter(dataAccess)SEND, conditional logic(FEED)READ
 
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "submit__button") {
