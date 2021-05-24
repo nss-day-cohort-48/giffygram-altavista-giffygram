@@ -32,9 +32,9 @@ export const postFeed = () => {
         <div class="post__description">${p.title}</div>
         <img class="post__image" src= "${p.imageURL}" style="width: 100%"/>
         <div class="post__description">${p.description}</div>
-        <div class="user__tagline">Posted by ${
-          p.userName
-        } at ${postDate.toLocaleString()}.</div>
+        <div class="user__tagline">Posted by ${ p.userName } at ${
+          postDate.toLocaleString()
+        }.</div>
         <div class="post__actions"> 
           <div>
             <img id="post__favorite--${p.id}" class="actionIcon" src="${
