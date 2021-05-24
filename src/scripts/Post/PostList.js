@@ -6,7 +6,6 @@ ggContainer.addEventListener("click", (e) => {
   if (e.target.id.startsWith("post__favorite")) {
     let [, postId] = e.target.id.split("--");
     postId = parseInt(postId);
-    debugger;
     const result = toggleLike(postId);
     if (typeof result === "string") {
       window.alert(result);
