@@ -1,11 +1,13 @@
 import {postFeed} from "./feed/PostList.js";
 import {DirectMessage} from "./Message/MessageForm.js";
+import {NavBar} from "./nav/NavBar.js";
 
 export const GiffyGram = () => {
   // Show main main UI
   return `
-    <h1>Giffygram</h1>
-    <article class="direct__message">
+    
+  <nav>${NavBar()}</nav>
+    <article class="miniMode">
     ${DirectMessage()}
     </article>
     <article class="post__feed">
