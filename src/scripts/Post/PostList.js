@@ -1,4 +1,4 @@
-import {getPosts} from "./PostProvider.js";
+import {getFeedPosts} from "./PostProvider.js";
 
 export const postFeed = () => {
   const posts = getFeedPosts();
