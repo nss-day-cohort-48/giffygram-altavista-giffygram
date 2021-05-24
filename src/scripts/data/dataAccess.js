@@ -1,6 +1,6 @@
 const applicationElement = document.querySelector(".giffygram");
 
-// APP STATE ==================================================================================>>
+// app state ==================================================================================>>
 const applicationState = {
   currentUser: {},
   feed: {
@@ -17,6 +17,14 @@ const applicationState = {
   posts: [],
   messages: [],
 };
+
+// helpers ====================================================================================>>
+const apiURL = "http://localhost:8081";
+const jsonPOST = (obj) => ({
+  headers: {"Content-Type": "application/json"},
+  method: "POST",
+  body: JSON.stringify(obj),
+});
 
 // SETTERS ====================================================================================>>
 export const toggleDisplayFavorites = () => {
@@ -62,17 +70,14 @@ export const setDisplayPostForm = (bool) => {
   applicationState.feed.displayPostForm = bool;
 };
 
-// GETTERS ================================================================>>
+// GETTERS ====================================================================================>>
 export const getFeedState = () => ({...applicationState.feed});
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
-export const rawMessages = () => applicationState.messages.map((m) => ({...m}));
+export const rawMessages = () => applicationState.messages.map((message) => ({...message}));
 
-// fetch stuff
-const apiURL = "http://localhost:8081";
-
-// fetch GET ==================================================================================>>
+// FETCHES ==================================================================================>>
 // prettier-ignore
 export const fetchAll = () => 
   fetchUsers()
@@ -104,25 +109,7 @@ const fetchMessages = () =>
     .then((response) => response.json())
     .then((data) => (applicationState.messages = data));
 
-// since we don't have a follow provider, we build the object here
-// TODO: validate that someone isn't trying to follow themselves
-export const newFollow = (userId, followingId) => {
-  if (userId && followingId) {
-    postFollow({userId: userId, followingId: followingId});
-  }
-  return "follow incomplete";
-};
-
-// fetch DELETE ===============================================================================>>
 export const deleteLike = (id) => fetch(`${apiURL}/likes/${id}`, {method: "DELETE"});
-
-// fetch POST =================================================================================>>
-// helper function for creating POSTable JSON objects
-const jsonPOST = (obj) => ({
-  headers: {"Content-Type": "application/json"},
-  method: "POST",
-  body: JSON.stringify(obj),
-});
 
 export const postUser = (userObj) => fetch(`${apiURL}/users`, jsonPOST(userObj));
 export const postPost = (postObj) => fetch(`${apiURL}/posts`, jsonPOST(postObj));
