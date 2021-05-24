@@ -3,7 +3,8 @@ import {setDisplayMessage} from "../data/dataAccess.js";
 const container = document.querySelector(".giffygram");
 
 container.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "submitOrder") {
+  if (clickEvent.target.id === "logout") {
+    container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
