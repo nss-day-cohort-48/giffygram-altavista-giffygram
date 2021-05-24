@@ -1,3 +1,4 @@
+import { newPost } from "./PostProvider.js"
 
 
 export const PostForm = () => {
@@ -28,37 +29,39 @@ export const PostForm = () => {
     
 // NEED TO CHANGE THIS MONDAY FINISH CLICKEVENTS
     // LINK TO CONTAINER
-    // const mainContainer = document.querySelector(".giffygram")
-
-    
-    // mainContainer.addEventListener(
-    //     "click",
-    //     clickEvent => {
-    //         if (clickEvent.target.id === "save__button") {
-                
-    //             // WILL NEED userSender, recipientId, text
-    //             const userSender = parseInt(localStorage.getItem("gg_user"));
+    const mainContainer = document.querySelector(".giffygram")
+    // We need = newPost = (userId, title, imageURL, description)
+    // const userSender = parseInt(localStorage.getItem("gg_user"));
                 
     //             const sendToUser = document.querySelector("#dmUser").value
     //             const sendMessage = document.querySelector("input[name='dmText']").value
+    
+    mainContainer.addEventListener(
+        "click",
+        clickEvent => {
+            if (clickEvent.target.id === "submit__button") {
                 
+                const userId = parseInt(localStorage.getItem("gg_user"));
+                const title = document.querySelector("input[name='postTitle']").value
+                const imageURL = document.querySelector("input[name='postImg']").value
+                const description = document.querySelector("input[name='postDescription']").value
                 
-    //             newMessage(userSender, sendToUser, sendMessage).then(
-    //               () => {
-    //                 mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
-    //               }
-    //             ) 
-                
-    //         }
+                newPost(userId, title, imageURL, description).then(
+                    () => {
+                      mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+                    }
+                  ) 
+
+            }
             
-    //     }
-    //     )
+        }
+        )
         
-    //     mainContainer.addEventListener(
-    //         "click",
-    //         clickEvent => {
-    //             if (clickEvent.target.id === "cancel__button") {
-    //                 mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
-    //             }
-    //         }
-    //         )
+        mainContainer.addEventListener(
+            "click",
+            clickEvent => {
+                if (clickEvent.target.id === "cancel__button") {
+                    mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+                }
+            }
+            )

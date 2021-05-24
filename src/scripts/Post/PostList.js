@@ -1,4 +1,4 @@
-import { getPosts } from "../Post/PostProvider.js";
+import { getPosts } from "./PostProvider.js";
 
  
 
@@ -14,7 +14,7 @@ const postsHTML = posts.map(
         
         return `
         <div class="user__title">${p.title}</div>
-        <img src= "${p.imageURL}"/>
+        <img src= "${p.imageURL}" style="width: 100%"/>
         <div class="user__description">${p.description}</div>
         <div class="user__post">Posted by ${p.userName} at ${postDate.toLocaleString()}.</div>
         `
