@@ -3,7 +3,7 @@ import {
   rawPosts,
   rawUsers,
   rawLikes,
-  feedState,
+  getFeedState,
 } from "../data/dataAccess.js";
 
 // TODO more validation
@@ -38,7 +38,7 @@ export const getPosts = () => {
 
 export const getFeedPosts = () => {
   let posts = getPosts();
-  const fs = feedState();
+  const fs = getFeedState();
   const currentUserId = localStorage.getItem("gg_user");
 
   if (fs.displayFavorites) {
