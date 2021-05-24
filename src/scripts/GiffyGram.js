@@ -1,6 +1,6 @@
 import {DirectMessage} from "./Message/MessageForm.js";
-import { PostForm } from "./Post/PostForm.js";
-import { postFeed } from "./Post/PostList.js";
+import {PostForm} from "./Post/PostForm.js";
+import {postFeed} from "./Post/PostList.js";
 
 export const GiffyGram = () => {
   // Show main main UI
