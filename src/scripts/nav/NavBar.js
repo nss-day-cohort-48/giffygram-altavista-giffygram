@@ -1,3 +1,5 @@
+import {setDisplayMessage} from "../data/dataAccess.js";
+
 const container = document.querySelector(".giffygram");
 
 container.addEventListener("click", (clickEvent) => {
@@ -11,7 +13,9 @@ container.addEventListener("click", (clickEvent) => {
 });
 
 container.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "submitOrder") {
+  if (clickEvent.target.id === "logo") {
+    setDisplayMessage(false);
+    container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
@@ -24,8 +28,10 @@ export const NavBar = () => {
     <div class="navigation__item navigation__search"></div>
     <div class="navigation__item navigation__message">
     <img id="directMessageIcon" src="/images/fountain-pen.svg" alt="Direct message">
-    <div class="notification__count"></div>
+    <div class="notification__count">3</div>
     </div>
-    <div class="navigation__item navigation__logout"></div>
+    <div class="navigation__item navigation__logout">
+    <button id="logout" class="fakeLink">Logout</button>
+    </div>
     </nav>`;
 };
