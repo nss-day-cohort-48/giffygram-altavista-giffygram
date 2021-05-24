@@ -1,7 +1,7 @@
 import {getPosts} from "./PostProvider.js";
 
 export const postFeed = () => {
-  const posts = getPosts();
+  const posts = getFeedPosts();
   //    MAP METHOD AND JOIN METHOD
   let htmlString = ``;
 
