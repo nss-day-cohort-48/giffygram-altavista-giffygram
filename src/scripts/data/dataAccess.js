@@ -80,29 +80,29 @@ export const fetchAll = () =>
     .then(fetchLikes)
     .then(fetchMessages);
 
-const fetchPosts = () => {
-  return fetch(`${apiURL}/posts`)
+// prettier-ignore
+const fetchPosts = () => 
+  fetch(`${apiURL}/posts`)
     .then((response) => response.json())
     .then((data) => (applicationState.posts = data));
-};
 
-const fetchLikes = () => {
-  return fetch(`${apiURL}/likes`)
+// prettier-ignore
+const fetchLikes = () => 
+  fetch(`${apiURL}/likes`)
     .then((response) => response.json())
     .then((data) => (applicationState.likes = data));
-};
 
-const fetchUsers = () => {
-  return fetch(`${apiURL}/users`)
+// prettier-ignore
+const fetchUsers = () =>
+  fetch(`${apiURL}/users`)
     .then((response) => response.json())
     .then((data) => (applicationState.users = data));
-};
 
-const fetchMessages = () => {
-  return fetch(`${apiURL}/messages`)
+// prettier-ignore
+const fetchMessages = () => 
+  fetch(`${apiURL}/messages`)
     .then((response) => response.json())
     .then((data) => (applicationState.messages = data));
-};
 
 // since we don't have a follow provider, we build the object here
 // TODO: validate that someone isn't trying to follow themselves
