@@ -28,10 +28,10 @@ Use the assets that you created during the deconstruction phase to construct you
 1. Once your team defines all of the features that need to be built for the application, create an Issue for each one.
 1. Create a project for your repository.
 1. Create the following columns in your project
-    * Backlog
-    * Doing
-    * Ready to test
-    * Done
+   - Backlog
+   - Doing
+   - Ready to test
+   - Done
 1. Add each issue to your Backlog column.
 
 Each teammate then drags one issue from the Backlog to the Doing column, and assigns themselves to the issue. You are now accountable for making sure that issue gets done.
@@ -42,7 +42,7 @@ You and all of your teammates **share the responsibility** of getting it done. N
 
 Create a file named `PULL_REQUEST_TEMPLATE.md` in your repository and place the following content into it. Every new PR you create will have this structure automatically.
 
-```text
+````text
 #### Changes Made
 1. Added file `filename` to `directoryname` directory.
 1. Modified file `filename` to include `functionalityname` and functionality.
@@ -60,4 +60,4 @@ Create a file named `PULL_REQUEST_TEMPLATE.md` in your repository and place the 
 4. View code file.
     > Confirm file modifications are present as indicated above.
     > Confirm no unused code or extraneous comments exist.
-```
+````
