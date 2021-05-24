@@ -3,7 +3,7 @@ import {fetchAll} from "./data/dataAccess.js";
 import {GiffyGram} from "./GiffyGram.js";
 import {getMessages} from "./Message/MessageProvider.js";
 import {getUsers} from "./User/UserProvider.js";
-import {getPosts} from "./Post/PostProvider.js";
+import {getFeedPosts, getPosts} from "./Post/PostProvider.js";
 import {makeTesters} from "./testers.js";
 
 const applicationElement = document.querySelector(".giffygram");
@@ -21,8 +21,10 @@ export const renderApp = () => {
   console.log(getMessages());
   console.log("Users:");
   console.log(getUsers());
-  console.log("Posts:");
+  console.log("All posts:");
   console.log(getPosts());
+  console.log("Filtered posts for the feed:");
+  console.log(getFeedPosts());
 };
 
 const fetchAndRender = () => fetchAll().then(renderApp);
