@@ -1,6 +1,5 @@
 import {DirectMessage} from "./Message/MessageForm.js";
-import {PostForm} from "./Post/PostForm.js";
-import {postFeed} from "./Post/PostList.js";
+import {Feed} from "./Post/Feed.js";
 
 export const GiffyGram = () => {
   // Show main main UI
@@ -9,11 +8,8 @@ export const GiffyGram = () => {
     <article class="direct__message">
     ${DirectMessage()}
     </article>
-    <article class="post__form">
-    ${PostForm()}
-    </article>
     <article class="post__feed">
-    ${postFeed()}
+    ${Feed()}
     </article>
    
     `;

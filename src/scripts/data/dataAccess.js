@@ -9,6 +9,7 @@ const applicationState = {
     chosenUser: null,
     displayByYear: false,
     chosenYear: null,
+    displayPostForm: false,
   },
   users: [],
   likes: [],
@@ -59,8 +60,12 @@ export const setDisplayMessage = (bool) => {
   applicationState.feed.displayMessages = bool;
 };
 
+export const setDisplayPostForm = (bool) => {
+  applicationState.feed.displayPostForm = bool;
+};
+
 // GETTERS ================================================================>>
-export const feedState = () => ({...applicationState.feed});
+export const getFeedState = () => ({...applicationState.feed});
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
