@@ -1,5 +1,6 @@
 const applicationElement = document.querySelector(".giffygram");
 
+// APP STATE ==================================================================================>>
 const applicationState = {
   currentUser: {},
   feed: {
@@ -17,10 +18,9 @@ const applicationState = {
   messages: [],
 };
 
-// SETTERS ================================================================>>
+// SETTERS ====================================================================================>>
 export const toggleDisplayFavorites = () => {
-  applicationState.feed.displayFavorites =
-    !applicationState.feed.displayFavorites;
+  applicationState.feed.displayFavorites = !applicationState.feed.displayFavorites;
 };
 
 // to turn off, call without a null or invalid year
@@ -29,9 +29,7 @@ export const setDisplayByYear = (year) => {
   const foundPost = applicationState.posts.find(
     (p) => new Date(p.timestamp).getFullYear() === year
   );
-  const foundYear = foundPost
-    ? new Date(foundPost.timestamp).getFullYear()
-    : null;
+  const foundYear = foundPost ? new Date(foundPost.timestamp).getFullYear() : null;
   if (foundYear) {
     applicationState.feed.chosenYear = foundYear;
     applicationState.feed.displayByYear = true;
@@ -74,9 +72,13 @@ export const rawMessages = () => applicationState.messages.map((m) => ({...m}));
 // fetch stuff
 const apiURL = "http://localhost:8081";
 
-// fetch GET ==============================================================>>
-export const fetchAll = () =>
-  fetchUsers().then(fetchPosts).then(fetchLikes).then(fetchMessages);
+// fetch GET ==================================================================================>>
+// prettier-ignore
+export const fetchAll = () => 
+  fetchUsers()
+    .then(fetchPosts)
+    .then(fetchLikes)
+    .then(fetchMessages);
 
 const fetchPosts = () => {
   return fetch(`${apiURL}/posts`)
@@ -102,15 +104,6 @@ const fetchMessages = () => {
     .then((data) => (applicationState.messages = data));
 };
 
-// since we don't have a like provider, we build the object here
-// TODO: validate that the post exists
-export const newLike = (userId, postId) => {
-  if (userId && postId) {
-    return postLike({userId: userId, postId: postId});
-  }
-  return "like incomplete";
-};
-
 // since we don't have a follow provider, we build the object here
 // TODO: validate that someone isn't trying to follow themselves
 export const newFollow = (userId, followingId) => {
@@ -120,7 +113,10 @@ export const newFollow = (userId, followingId) => {
   return "follow incomplete";
 };
 
-// fetch POST ==============================================================>>
+// fetch DELETE ===============================================================================>>
+export const deleteLike = (id) => fetch(`${apiURL}/likes/${id}`, {method: "DELETE"});
+
+// fetch POST =================================================================================>>
 // helper function for creating POSTable JSON objects
 const jsonPOST = (obj) => ({
   headers: {"Content-Type": "application/json"},
@@ -128,22 +124,8 @@ const jsonPOST = (obj) => ({
   body: JSON.stringify(obj),
 });
 
-export const postUser = (userObj) => {
-  return fetch(`${apiURL}/users`, jsonPOST(userObj));
-};
-
-export const postMessage = (messageObj) => {
-  return fetch(`${apiURL}/messages`, jsonPOST(messageObj));
-};
-
-export const postPost = (postObj) => {
-  return fetch(`${apiURL}/posts`, jsonPOST(postObj));
-};
-
-const postLike = (likeObj) => {
-  return fetch(`${apiURL}/likes`, jsonPOST(likeObj));
-};
-
-const postFollow = (followObj) => {
-  return fetch(`${apiURL}/follows`, jsonPOST(followObj));
-};
+export const postUser = (userObj) => fetch(`${apiURL}/users`, jsonPOST(userObj));
+export const postPost = (postObj) => fetch(`${apiURL}/posts`, jsonPOST(postObj));
+export const postLike = (likeObj) => fetch(`${apiURL}/likes`, jsonPOST(likeObj));
+export const postMessage = (messageObj) => fetch(`${apiURL}/messages`, jsonPOST(messageObj));
+export const postFollow = (followObj) => fetch(`${apiURL}/follows`, jsonPOST(followObj));

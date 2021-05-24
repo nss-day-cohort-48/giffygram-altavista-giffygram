@@ -3,7 +3,7 @@
   "endOfLine": "lf",
   "overrides": [
     {
-      "files": "scripts/database.js",
+      "files": "src/scripts/data/dataAccess.js",
       "options": {
         "printWidth": 100
       }
