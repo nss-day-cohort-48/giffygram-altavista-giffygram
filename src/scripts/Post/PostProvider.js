@@ -53,7 +53,7 @@ export const getFeedPosts = () => {
 
   if (fs.displayByYear) {
     posts = posts.filter(
-      (p) => new Data(p.timestamp).getFullYear() === fs.chosenYear
+      (p) => new Date(p.timestamp).getFullYear() === fs.chosenYear
     );
   }
 

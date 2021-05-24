@@ -24,15 +24,20 @@ export const toggleDisplayFavorites = () => {
 
 // to turn off, call without a null or invalid year
 export const setDisplayByYear = (year) => {
-  const foundYear = applicationState.posts.find(
+  year = parseInt(year);
+  const foundPost = applicationState.posts.find(
     (p) => new Date(p.timestamp).getFullYear() === year
   );
+  const foundYear = foundPost
+    ? new Date(foundPost.timestamp).getFullYear()
+    : null;
   if (foundYear) {
-    applicationState.feed.setDisplayByYear = true;
+    applicationState.feed.chosenYear = foundYear;
+    applicationState.feed.displayByYear = true;
   } else {
-    applicationState.feed.setDisplayByYear = false;
+    applicationState.feed.displayByYear = false;
+    applicationState.feed.chosenYear = null;
   }
-  applicationState.feed.chosenYear = foundYear;
 };
 
 // to turn off, call without a null or invalid id
