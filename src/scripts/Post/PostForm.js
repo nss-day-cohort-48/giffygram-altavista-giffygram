@@ -40,8 +40,6 @@ mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "miniMode") {
     setDisplayPostForm(true);
     mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-  } else {
-    setDisplayPostForm(false);
   }
 });
 
@@ -56,14 +54,19 @@ mainContainer.addEventListener("click", (clickEvent) => {
       "input[name='postDescription']"
     ).value;
 
-    newPost(userId, title, imageURL, description).then(() => {
-      mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-    });
+    const result = newPost(userId, title, imageURL, description);
+    // newPost returns a string if validation fails
+    typeof result === "string"
+      ? window.alert(result)
+      : result.then(() => {
+          mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+        });
   }
 });
 
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "cancel__button") {
+    setDisplayPostForm(false);
     mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });

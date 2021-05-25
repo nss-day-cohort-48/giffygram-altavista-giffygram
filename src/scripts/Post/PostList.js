@@ -1,17 +1,15 @@
 import {toggleLike} from "../Like/LikeProvider.js";
 import {getFeedPosts} from "./PostProvider.js";
 
-const ggContainer = document.querySelector(".giffygram");
-ggContainer.addEventListener("click", (e) => {
+document.querySelector(".giffygram").addEventListener("click", (e) => {
   if (e.target.id.startsWith("post__favorite")) {
     let [, postId] = e.target.id.split("--");
     postId = parseInt(postId);
     const result = toggleLike(postId);
-    if (typeof result === "string") {
-      window.alert(result);
-    } else {
-      result.then(ggContainer.dispatchEvent(new CustomEvent("stateChanged")));
-    }
+    // toggleLike returns a string if validation fails
+    typeof result === "string"
+      ? window.alert(result)
+      : result.then(ggContainer.dispatchEvent(new CustomEvent("stateChanged")));
   }
 });
 
@@ -45,7 +43,6 @@ export const postFeed = () => {
     </div>`;
   });
 
-  const listOfPosts = postsHTML.join("");
-  htmlString += listOfPosts;
+  htmlString += postsHTML.join("");
   return (htmlString += `</article>`);
 };
