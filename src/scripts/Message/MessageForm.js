@@ -4,20 +4,20 @@ import {setDisplayDM} from "../data/dataAccess.js";
 
 export const DirectMessage = () => {
   return /*html*/ `
+    <div class="directMessage">
     <div>
-    <label class="send__user" for="dmUser">Send to</label>
     <select name="dmUser" id="dmUser" class="input">
-      <option value="user__select">Choose</option>
+      <option value="user__select">Send to...</option>
       ${selectUsers()}
     </select>
     </div>
     <div>
-    <label class="message__user" for="dmText">Enter message here</label>
-    <input type="text" name="dmText" class="input" id="dmText" />
+      <input type="text" name="dmText" placeholder="Message:" class="input" id="dmText" />
     </div>
     <div>
-    <button id="save__button" class="input">Save</button>
-    <button id="cancel__button" class="input">Cancel</button>
+      <button id="dm__save" class="input">Save</button>
+      <button id="dm__cancel" class="input">Cancel</button>
+    </div>
     </div>
         `;
 };
@@ -25,6 +25,7 @@ export const DirectMessage = () => {
 const selectUsers = () =>
   getUsers()
     .map((m) => {
+      // dont let them send a message to themselves
       return m.id === parseInt(localStorage.getItem("gg_user"))
         ? ""
         : `<option value="${m.id}">${m.name}</option>`;
@@ -34,12 +35,12 @@ const selectUsers = () =>
 const mainContainer = document.querySelector(".giffygram");
 
 mainContainer.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "save__button") {
+  if (clickEvent.target.id === "dm__save") {
     const userSender = parseInt(localStorage.getItem("gg_user"));
     const sendToUser = document.querySelector("#dmUser").value;
     const sendMessage = document.querySelector("input[name='dmText']").value;
 
-    result = newMessage(userSender, sendToUser, sendMessage);
+    const result = newMessage(userSender, sendToUser, sendMessage);
     typeof result === "string"
       ? window.alert(result)
       : result.then(() => {
@@ -50,7 +51,7 @@ mainContainer.addEventListener("click", (clickEvent) => {
 });
 
 mainContainer.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "cancel__button") {
+  if (clickEvent.target.id === "dm__cancel") {
     setDisplayDM(false);
     mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
   }
