@@ -36,11 +36,12 @@ const mainContainer = document.querySelector(".giffygram");
 
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "dm__save") {
-    const userSender = parseInt(localStorage.getItem("gg_user"));
-    const sendToUser = document.querySelector("#dmUser").value;
-    const sendMessage = document.querySelector("#dmText").value;
-
-    const result = newMessage(userSender, sendToUser, sendMessage);
+    // newMessage(userId, recipientId, text)
+    const result = newMessage(
+      parseInt(localStorage.getItem("gg_user")),
+      document.querySelector("#dmUser").value,
+      document.querySelector("#dmText").value
+    );
     typeof result === "string"
       ? window.alert(result)
       : result.then(() => {
