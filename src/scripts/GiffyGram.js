@@ -1,16 +1,13 @@
-import {DirectMessage} from "./Message/MessageForm.js";
+import {setDisplayDM} from "./data/dataAccess.js";
+import {Inbox} from "./message/inbox.js";
 import {Feed} from "./Post/Feed.js";
 
 export const GiffyGram = () => {
   // Show main main UI
+  const showInbox = false;
+  setDisplayDM(false);
   return `
     <h1>Giffygram</h1>
-    <article class="direct__message">
-    ${DirectMessage()}
-    </article>
-    <article class="post__feed">
-    ${Feed()}
-    </article>
-   
+    ${showInbox ? Inbox() : Feed()}
     `;
 };
