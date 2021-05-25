@@ -5,8 +5,8 @@ document.querySelector(".giffygram").addEventListener("click", (e) => {
   if (e.target.id.startsWith("post__favorite")) {
     let [, postId] = e.target.id.split("--");
     postId = parseInt(postId);
-    // toggleLike returns a string if validation fails
     const result = toggleLike(postId);
+    // toggleLike returns a string if validation fails
     typeof result === "string"
       ? window.alert(result)
       : result.then(ggContainer.dispatchEvent(new CustomEvent("stateChanged")));
