@@ -12,7 +12,7 @@ export const DirectMessage = () => {
     </select>
     </div>
     <div>
-      <input type="text" name="dmText" placeholder="Message:" class="input" id="dmText" />
+      <textarea name="dmText" placeholder="Message:" id="dmText"></textarea>
     </div>
     <div>
       <button id="dm__save" class="input">Save</button>
