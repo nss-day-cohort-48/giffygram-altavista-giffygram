@@ -40,30 +40,29 @@ mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "miniMode") {
     setDisplayPostForm(true);
     mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-  } else {
-    setDisplayPostForm(false);
   }
-});
-
-// Setter(dataAccess)SEND, conditional logic(FEED)READ
-
-mainContainer.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "submit__button") {
-    const userId = parseInt(localStorage.getItem("gg_user"));
-    const title = document.querySelector("input[name='postTitle']").value;
-    const imageURL = document.querySelector("input[name='postImg']").value;
-    const description = document.querySelector(
-      "input[name='postDescription']"
-    ).value;
-
-    newPost(userId, title, imageURL, description).then(() => {
-      mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+  });
+  
+  // Setter(dataAccess)SEND, conditional logic(FEED)READ
+  
+  mainContainer.addEventListener("click", (clickEvent) => {
+    if (clickEvent.target.id === "submit__button") {
+      const userId = parseInt(localStorage.getItem("gg_user"));
+      const title = document.querySelector("input[name='postTitle']").value;
+      const imageURL = document.querySelector("input[name='postImg']").value;
+      const description = document.querySelector(
+        "input[name='postDescription']"
+        ).value;
+        
+        newPost(userId, title, imageURL, description).then(() => {
+          mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+        });
+      }
     });
-  }
-});
-
-mainContainer.addEventListener("click", (clickEvent) => {
-  if (clickEvent.target.id === "cancel__button") {
-    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-  }
+    
+    mainContainer.addEventListener("click", (clickEvent) => {
+      if (clickEvent.target.id === "cancel__button") {
+        setDisplayPostForm(false);
+        mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+      } 
 });
