@@ -2,27 +2,20 @@ import {setDisplayPostForm} from "../data/dataAccess.js";
 import {newPost} from "./PostProvider.js";
 
 export const PostForm = () => {
-  let html = `
-    <div>
-        <label class="post__title" for="postTitle">Enter Title Here</label>
-        <input type="text" name="postTitle"/>
-    </div>
-    <div>
-        <label class="post__img" for="postImg">Enter URL here</label>
-        <input type="text" name="postImg"/>
-    </div>
-    <div>
-        <label class="post__description" for="postDescription">Enter Description here</label>
-        <input type="text" name="postDescription"/>
-    </div>
-    <div>
+  return /*html*/ `
+    <div class="newPost">
+      <div>
+        <input type="text" placeholder="Title:" name="postTitle"/>
+      </div>
+      <div>
+        <input type="text" placeholder="GIF URL:" name="postImg"/>
+      </div>
+      <textarea placeholder="Description:" name="postDescription"></textarea>
+      <div>
         <button id="submit__button">Submit</button> 
-    </div>
-    <div>
         <button id="cancel__button">Cancel</button>
-    </div>
-        `;
-  return html;
+      </div>
+    </div>`;
 };
 
 // CREATING HTML FOR .miniMode
