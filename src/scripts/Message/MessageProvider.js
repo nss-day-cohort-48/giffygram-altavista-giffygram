@@ -23,6 +23,19 @@ export const getMessages = () => {
   return messages;
 };
 
+// get messages beloinging to current user
+export const getUserMessages = () =>
+  getMessages().filter(
+    (m) => m.userId === parseInt(localStorage.getItem("gg_user"))
+  );
+
+// use reduce to count unread messages starting from 0
+export const howManyUnread = (messagesArray) =>
+  messagesArray.reduce(countUnreads, 0);
+
+const countUnreads = (numberUnread, oneMessage) =>
+  oneMessage.read ? numberUnread : numberUnread + 1;
+
 const addUserNames = (messages, users) => {
   messages.map((m) => {
     if (m.userId) {
