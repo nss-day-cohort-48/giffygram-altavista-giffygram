@@ -1,5 +1,5 @@
 import {setDisplayDM} from "./data/dataAccess.js";
-import {Inbox} from "./message/inbox.js";
+import {Inbox} from "./Message/inbox.js";
 import {Feed} from "./Post/Feed.js";
 
 export const GiffyGram = () => {
