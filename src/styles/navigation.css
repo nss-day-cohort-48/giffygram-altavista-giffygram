@@ -39,7 +39,7 @@
   height: 2rem;
 }
 
-.notification__count {
+#notification__count {
   background-color: goldenrod;
   font-size: small;
   position: absolute;
