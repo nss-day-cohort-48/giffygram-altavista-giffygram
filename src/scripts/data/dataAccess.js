@@ -11,6 +11,7 @@ const applicationState = {
     displayByYear: false,
     chosenYear: null,
     displayPostForm: false,
+    displayDM: false,
   },
   users: [],
   likes: [],
@@ -30,6 +31,9 @@ const jsonPOST = (obj) => ({
 export const toggleDisplayFavorites = () => {
   applicationState.feed.displayFavorites = !applicationState.feed.displayFavorites;
 };
+export const setDisplayDM = (bool) => {
+  applicationState.feed.displayDM = bool;
+}
 
 // to turn off, call without a null or invalid year
 export const setDisplayByYear = (year) => {
