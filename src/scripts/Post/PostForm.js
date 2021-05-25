@@ -56,9 +56,13 @@ mainContainer.addEventListener("click", (clickEvent) => {
       "input[name='postDescription']"
     ).value;
 
-    newPost(userId, title, imageURL, description).then(() => {
-      mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-    });
+    // newPost returns a string if validation fails
+    const result = newPost(userId, title, imageURL, description);
+    typeof result === "string"
+      ? window.alert(result)
+      : result.then(() => {
+          mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+        });
   }
 });
 

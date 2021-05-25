@@ -1,7 +1,5 @@
 import {rawLikes, rawPosts, rawUsers} from "../data/dataAccess.js";
 
-// we aren't using it yet but if we want to add logic
-//      to getting the Users data we can do it here
 export const getUsers = () => {
   let users = rawUsers();
 
