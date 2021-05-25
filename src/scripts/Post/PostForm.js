@@ -40,8 +40,6 @@ mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "miniMode") {
     setDisplayPostForm(true);
     mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
-  } else {
-    setDisplayPostForm(false);
   }
 });
 
@@ -68,6 +66,7 @@ mainContainer.addEventListener("click", (clickEvent) => {
 
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "cancel__button") {
+    setDisplayPostForm(false);
     mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
