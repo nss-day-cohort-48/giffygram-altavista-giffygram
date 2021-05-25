@@ -4,10 +4,11 @@ import {postFeed} from "./PostList.js";
 
 export const Feed = () => {
   return `
-   
-    <article class="post__list">
+    <article class="post__feed">
+    
     ${getFeedState().displayPostForm ? PostForm() : MiniMode()}
     ${postFeed()}
+    
     </article>
 `;
 };
