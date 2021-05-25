@@ -26,7 +26,7 @@ export const getMessages = () => {
 // get messages beloinging to current user
 export const getUserMessages = () =>
   getMessages().filter(
-    (m) => m.userId === parseInt(localStorage.getItem("gg_user"))
+    (m) => m.recipientId === parseInt(localStorage.getItem("gg_user"))
   );
 
 // use reduce to count unread messages starting from 0
