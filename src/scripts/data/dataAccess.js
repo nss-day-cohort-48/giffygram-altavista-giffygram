@@ -118,13 +118,14 @@ const fetchMessages = () =>
     .then((response) => response.json())
     .then((data) => (applicationState.messages = data));
 
+export const deleteLike = (id) => fetch(`${apiURL}/likes/${id}`, {method: "DELETE"});
+export const deletePost = (id) => fetch(`${apiURL}/posts/${id}`, {method: "DELETE"});
+
 export const postUser = (userObj) => fetch(`${apiURL}/users`, jsonPOST(userObj));
 export const postPost = (postObj) => fetch(`${apiURL}/posts`, jsonPOST(postObj));
 export const postLike = (likeObj) => fetch(`${apiURL}/likes`, jsonPOST(likeObj));
 export const postMessage = (messageObj) => fetch(`${apiURL}/messages`, jsonPOST(messageObj));
 export const postFollow = (followObj) => fetch(`${apiURL}/follows`, jsonPOST(followObj));
-
-export const deleteLike = (id) => fetch(`${apiURL}/likes/${id}`, {method: "DELETE"});
 
 // PATCH requires only the keys that you want to update
 export const patchMessage = (id, changes) => fetch(`${apiURL}/messages/${id}`, jsonPATCH(changes));
