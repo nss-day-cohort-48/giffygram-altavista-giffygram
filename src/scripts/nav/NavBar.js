@@ -1,10 +1,16 @@
-import {setDisplayDM, setDisplayMessage} from "../data/dataAccess.js";
+import {
+  clearFilters,
+  setDisplayDM,
+  setDisplayMessage,
+} from "../data/dataAccess.js";
 import {getUserMessages, howManyUnread} from "../Message/MessageProvider.js";
 
 const container = document.querySelector(".giffygram");
 
 container.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logout") {
+    localStorage.setItem("gg_user", "");
+    clearFilters();
     container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
@@ -12,6 +18,7 @@ container.addEventListener("click", (clickEvent) => {
 container.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "directMessageIcon") {
     setDisplayDM(true);
+    setDisplayMessage(true);
     container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
@@ -26,6 +33,7 @@ container.addEventListener("click", (clickEvent) => {
 container.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logo") {
     setDisplayMessage(false);
+    setDisplayDM(false);
     container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
