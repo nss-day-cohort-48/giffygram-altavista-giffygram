@@ -37,7 +37,6 @@ export const postFeed = () => {
   //    MAP METHOD AND JOIN METHOD
   let htmlString = `<article class="post__feed">`;
 
-
   const postsHTML = posts.map((p) => {
     const postDate = new Date(p.timestamp);
     const isLiked = p.likes.find((l) => l.userId === currentUserId);
@@ -69,5 +68,7 @@ export const postFeed = () => {
 };
 const trashCanFor = (p) => {
   const trashcan = "/images/trash__icon.png";
-  return (parseInt(localStorage.getItem("gg_user")) === p.userId ) ? `<img id="post__delete--${p.id}" class="actionIcon" src="${trashcan}"/>`: "";
+  return parseInt(localStorage.getItem("gg_user")) === p.userId
+    ? `<img id="post__delete--${p.id}" class="actionIcon" src="${trashcan}"/>`
+    : "";
 };

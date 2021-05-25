@@ -33,7 +33,7 @@ export const toggleDisplayFavorites = () => {
 };
 export const setDisplayDM = (bool) => {
   applicationState.feed.displayDM = bool;
-}
+};
 
 // to turn off, call without a null or invalid year
 export const setDisplayByYear = (year) => {
@@ -115,7 +115,6 @@ const fetchMessages = () =>
 
 export const deleteLike = (id) => fetch(`${apiURL}/likes/${id}`, {method: "DELETE"});
 export const deletePost = (id) => fetch(`${apiURL}/posts/${id}`, {method: "DELETE"});
-
 
 export const postUser = (userObj) => fetch(`${apiURL}/users`, jsonPOST(userObj));
 export const postPost = (postObj) => fetch(`${apiURL}/posts`, jsonPOST(postObj));
