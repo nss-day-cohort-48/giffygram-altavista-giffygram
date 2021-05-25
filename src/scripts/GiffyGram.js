@@ -3,11 +3,11 @@ import {setDisplayDM} from "./data/dataAccess.js";
 import {Inbox} from "./Message/inbox.js";
 import {Feed} from "./Post/Feed.js";
 
-setDisplayDM(true); // FOR TESTING
+//setDisplayDM(true); // FOR TESTING
 
 export const GiffyGram = () => {
   // Show main main UI
-  const showInbox = true; // FOR TESTING
+  const showInbox = false; // FOR TESTING
   return `
   <nav>${NavBar()}</nav>
     ${showInbox ? Inbox() : Feed()}
