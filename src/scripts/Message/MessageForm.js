@@ -12,7 +12,7 @@ export const DirectMessage = () => {
     </select>
     </div>
     <div>
-      <input type="text" name="dmText" placeholder="Message:" class="input" id="dmText" />
+      <textarea name="dmText" placeholder="Message:" id="dmText"></textarea>
     </div>
     <div>
       <button id="dm__save" class="input">Save</button>
@@ -36,11 +36,12 @@ const mainContainer = document.querySelector(".giffygram");
 
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "dm__save") {
-    const userSender = parseInt(localStorage.getItem("gg_user"));
-    const sendToUser = document.querySelector("#dmUser").value;
-    const sendMessage = document.querySelector("input[name='dmText']").value;
-
-    const result = newMessage(userSender, sendToUser, sendMessage);
+    // newMessage(userId, recipientId, text)
+    const result = newMessage(
+      parseInt(localStorage.getItem("gg_user")),
+      document.querySelector("#dmUser").value,
+      document.querySelector("#dmText").value
+    );
     typeof result === "string"
       ? window.alert(result)
       : result.then(() => {

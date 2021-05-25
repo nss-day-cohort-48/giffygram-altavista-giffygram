@@ -26,6 +26,11 @@ const jsonPOST = (obj) => ({
   method: "POST",
   body: JSON.stringify(obj),
 });
+const jsonPATCH = (obj) => ({
+  headers: {"Content-Type": "application/json"},
+  method: "PATCH",
+  body: JSON.stringify(obj),
+});
 
 // SETTERS ====================================================================================>>
 export const toggleDisplayFavorites = () => {
@@ -121,3 +126,6 @@ export const postPost = (postObj) => fetch(`${apiURL}/posts`, jsonPOST(postObj))
 export const postLike = (likeObj) => fetch(`${apiURL}/likes`, jsonPOST(likeObj));
 export const postMessage = (messageObj) => fetch(`${apiURL}/messages`, jsonPOST(messageObj));
 export const postFollow = (followObj) => fetch(`${apiURL}/follows`, jsonPOST(followObj));
+
+// PATCH requires only the keys that you want to update
+export const patchMessage = (id, changes) => fetch(`${apiURL}/messages/${id}`, jsonPATCH(changes));
