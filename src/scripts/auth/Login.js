@@ -23,6 +23,15 @@ document.addEventListener("click", (clickEvent) => {
   }
 });
 
+
+
+document.addEventListener("keypress", (event) => {
+  
+  if(event.code === "Enter") {
+    document.querySelector("#loginButton").click();
+  }
+})
+
 export const LoginForm = () => {
   return `
         <div class="loginForm">
