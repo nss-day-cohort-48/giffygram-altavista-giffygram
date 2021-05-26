@@ -1,4 +1,4 @@
-import {rawPosts, postLike, deleteLike, rawLikes} from "../data/dataAccess.js";
+import {rawPosts, postLike, deleteLike} from "../data/dataAccess.js";
 import {getUsers} from "../User/UserProvider.js";
 
 // ??? where is getLikes()?
