@@ -1,5 +1,6 @@
 import {LoginForm} from "./auth/Login.js";
-import {fetchAll} from "./data/dataAccess.js";
+import {RegisterForm} from "./auth/Register.js";
+import {getFeedState, fetchAll} from "./data/dataAccess.js";
 import {GiffyGram} from "./GiffyGram.js";
 import {getMessages} from "./Message/MessageProvider.js";
 import {getUsers} from "./User/UserProvider.js";
@@ -10,8 +11,12 @@ const applicationElement = document.querySelector(".giffygram");
 
 export const renderApp = () => {
   const user = parseInt(localStorage.getItem("gg_user"));
+  const registering = getFeedState().registering;
+
   if (user) {
     applicationElement.innerHTML = GiffyGram();
+  } else if (registering) {
+    applicationElement.innerHTML = RegisterForm();
   } else {
     applicationElement.innerHTML = LoginForm();
   }

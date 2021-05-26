@@ -1,4 +1,4 @@
-import {rawLikes, rawPosts, rawUsers} from "../data/dataAccess.js";
+import {postUser, rawLikes, rawPosts, rawUsers} from "../data/dataAccess.js";
 
 export const getUsers = () => {
   let users = rawUsers();
@@ -7,6 +7,18 @@ export const getUsers = () => {
   users = addPosts(users, rawPosts());
 
   return users;
+};
+
+export const newUser = (name, email, password) => {
+  if (name && email && password) {
+    return postUser({
+      name: name,
+      email: email,
+      password: password,
+    });
+  }
+
+  return "registration incomplete";
 };
 
 const addPosts = (users, posts) =>
@@ -20,5 +32,3 @@ const addLikes = (users, likes) =>
     u.likes = likes.filter((l) => l.userId === u.id);
     return u;
   });
-
-//   export const newUser = () => {}

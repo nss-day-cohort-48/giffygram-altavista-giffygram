@@ -1,4 +1,5 @@
- import { getUsers } from "../User/UserProvider.js"
+import {setRegistering} from "../data/dataAccess.js";
+import {getUsers} from "../User/UserProvider.js";
 
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "loginButton") {
@@ -19,11 +20,21 @@ document.addEventListener("click", (clickEvent) => {
       document
         .querySelector(".giffygram")
         .dispatchEvent(new CustomEvent("stateChanged"));
+    } else if (email && password) {
+      window.alert("User not found :(");
     }
   }
 });
 
 
+document.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "registerButton") {
+    setRegistering(true);
+    document
+      .querySelector(".giffygram")
+      .dispatchEvent(new CustomEvent("stateChanged"));
+  }
+});
 
 document.addEventListener("keypress", (event) => {
   
@@ -46,7 +57,10 @@ export const LoginForm = () => {
                     <input type="password" name="password" placeholder="Password" />
                 </fieldset>
             </form>
-            <button id="loginButton">Login</button>
+            <div class="buttons" style="display: flex;">
+              <button id="loginButton">Login</button>
+              <button id="registerButton">Register</button>
+            </div>
         </div>
     `;
 };
