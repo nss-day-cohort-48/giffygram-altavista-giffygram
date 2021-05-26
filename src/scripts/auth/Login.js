@@ -26,6 +26,7 @@ document.addEventListener("click", (clickEvent) => {
 export const LoginForm = () => {
   return `
         <div class="loginForm">
+            <h1>Giffy Gram</h1>
             <form>
                 <fieldset>
                     <label for="email">Email:</label>

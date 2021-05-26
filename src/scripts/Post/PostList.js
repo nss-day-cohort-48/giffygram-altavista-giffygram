@@ -44,7 +44,7 @@ export const postFeed = () => {
     // prettier-ignore
     return /*html*/ `
     <div class="post">
-      <div class="post__description">${p.title}</div>
+      <h3 class="post__description">${p.title}</h3>
       <img class="post__image" src= "${p.imageURL}" style="width: 100%"/>
       <div class="post__description">${p.description}</div>
       <div class="user__tagline">Posted by ${ p.userName } at ${
