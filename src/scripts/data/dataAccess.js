@@ -22,7 +22,7 @@ const applicationState = {
 const initialFeedState = applicationState.feed;
 
 // helpers ====================================================================================>>
-const apiURL = "http://localhost:8081";
+const apiURL = "http://10.99.99.1:8081";
 const jsonPOST = (obj) => ({
   headers: {"Content-Type": "application/json"},
   method: "POST",
