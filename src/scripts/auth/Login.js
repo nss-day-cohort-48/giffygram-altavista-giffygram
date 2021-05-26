@@ -1,4 +1,4 @@
- import { getUsers } from "../User/UserProvider.js"
+import {getUsers} from "../User/UserProvider.js";
 
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "loginButton") {
@@ -23,6 +23,15 @@ document.addEventListener("click", (clickEvent) => {
   }
 });
 
+document.addEventListener("click", (clickEvent) => {
+  if (clickEvent.target.id === "registerButton") {
+    setRegistering(true);
+    document
+      .querySelector(".giffygram")
+      .dispatchEvent(new CustomEvent("stateChanged"));
+  }
+});
+
 export const LoginForm = () => {
   return `
         <div class="loginForm">
@@ -37,7 +46,10 @@ export const LoginForm = () => {
                     <input type="password" name="password" placeholder="Password" />
                 </fieldset>
             </form>
-            <button id="loginButton">Login</button>
+            <div class="buttons" style="display: flex;">
+              <button id="loginButton">Login</button>
+              <button id="registerButton">Register</button>
+            </div>
         </div>
     `;
 };

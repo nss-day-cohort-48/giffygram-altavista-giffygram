@@ -4,6 +4,8 @@ const applicationElement = document.querySelector(".giffygram");
 const applicationState = {
   currentUser: {},
   feed: {
+    // THIS IS CLEARLY WAY MORE THAN THE FEED STATE oops
+    registering: false,
     displayFavorites: false,
     displayMessages: false,
     displayByUser: false,
@@ -35,6 +37,9 @@ const jsonPATCH = (obj) => ({
 });
 
 // SETTERS ====================================================================================>>
+export const setRegistering = (bool) => {
+  applicationState.feed.registering = bool;
+};
 export const clearFilters = () => {
   applicationState.feed = initialFeedState;
 };
