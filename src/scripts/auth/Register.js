@@ -1,5 +1,5 @@
-import {setRegistering, postUser} from "../data/dataAccess.js";
-import {getUsers} from "../User/UserProvider.js";
+import {setRegistering} from "../data/dataAccess.js";
+import {getUsers, newUser} from "../User/UserProvider.js";
 
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "cancelButton") {
@@ -18,18 +18,18 @@ document.addEventListener("click", (clickEvent) => {
     const password = document.querySelector("input[name='password']").value;
     const name = document.querySelector("input[name='name']").value;
 
-    postUser({
-      name: name,
-      email: email,
-      password: password,
-    })
-      .then((res) => res.json())
-      .then((newUser) => {
-        localStorage.setItem("gg_user", newUser.id);
-        document
-          .querySelector(".giffygram")
-          .dispatchEvent(new CustomEvent("stateChanged"));
-      });
+    const result = newUser(name, email, password);
+
+    typeof result === "string"
+      ? window.alert(result)
+      : result
+          .then((res) => res.json())
+          .then((newUser) => {
+            localStorage.setItem("gg_user", newUser.id);
+            document
+              .querySelector(".giffygram")
+              .dispatchEvent(new CustomEvent("stateChanged"));
+          });
   }
 });
 
