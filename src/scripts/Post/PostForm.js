@@ -26,7 +26,7 @@ export const MiniMode = () => {
   return html;
 };
 
-const giffygram = getContainer();
+const giffygram = document.querySelector("#giffygram")
 
 giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "miniMode") {

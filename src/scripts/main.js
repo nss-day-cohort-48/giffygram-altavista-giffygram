@@ -7,7 +7,7 @@ import {getUsers} from "./User/UserProvider.js";
 import {getFeedPosts, getPosts} from "./Post/PostProvider.js";
 import {makeTesters} from "./testers.js";
 
-const giffygram = getContainer();
+const giffygram = document.querySelector("#giffygram")
 
 export const renderApp = () => {
   const user = parseInt(localStorage.getItem("gg_user"));

@@ -3,7 +3,7 @@ import {toggleLike} from "../Like/LikeProvider.js";
 import {getFeedPosts} from "./PostProvider.js";
 import {getContainer} from "../GiffyGram.js";
 
-const giffygram = getContainer();
+const giffygram = document.querySelector("#giffygram")
 
 giffygram.addEventListener("click", (e) => {
   if (e.target.id.startsWith("post__favorite")) {

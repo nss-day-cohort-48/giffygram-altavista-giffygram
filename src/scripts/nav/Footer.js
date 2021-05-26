@@ -1,14 +1,9 @@
-import {
-  toggleDisplayFavorites,
-  setDisplayByUser,
-  setDisplayByYear,
-  getFeedState,
-} from "../data/dataAccess.js";
+import { toggleDisplayFavorites, setDisplayByUser, setDisplayByYear, getFeedState,} from "../data/dataAccess.js";
 import { getContainer } from "../GiffyGram.js";
 import {postYear, getPosts} from "../Post/PostProvider.js";
 import {getUsers} from "../User/UserProvider.js";
 
-const giffygram = getContainer();
+const giffygram = document.querySelector("#giffygram")
 
 giffygram.addEventListener("change", (event) => {
   if (event.target.id === "yearSelection") {
