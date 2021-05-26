@@ -105,50 +105,37 @@
     {
       "userId": 2,
       "recipientId": 3,
-      "text": "Selvage la croix prism truffaut cray offal lumbersexual bespoke skateboard. Next level chia enamel pin, wayfarers copper mug jean shorts leggings.",
+      "text": "Thanks for all the diamonds, Key!",
       "read": false,
       "id": 1
     },
     {
       "userId": 2,
       "recipientId": 3,
-      "text": "Occupy pour-over chambray pitchfork woke vinyl. Drinking vinegar humblebrag banh mi lo-fi fanny pack hella cred 3 wolf moon air plant bitters meggings man braid migas narwhal. Tacos chia neutra, tumeric semiotics raw denim cardigan single-origin coffee health goth mlkshk coloring book vinyl schlitz.",
+      "text": "(in Minecraft)",
       "read": false,
       "id": 2
     },
     {
       "userId": 1,
-      "recipientId": 3,
-      "text": "Poke church-key single-origin coffee art party stumptown hoodie, vice offal. Chambray intelligentsia DIY portland kogi. Meh hexagon pug everyday carry brooklyn poutine knausgaard ugh.",
+      "recipientId": 2,
+      "text": "Val where the heck did you go today? You were gone for hours!",
       "read": false,
       "id": 3
     },
     {
       "userId": 1,
-      "recipientId": 2,
-      "text": "Live-edge marfa williamsburg lomo la croix organic etsy seitan pop-up messenger bag iceland. Meggings 3 wolf moon street art, dreamcatcher slow-carb selvage butcher. Cliche snackwave art party, biodiesel flexitarian jianbing ramps disrupt neutra sriracha street art flannel tattooed keffiyeh.",
+      "recipientId": 3,
+      "text": "Can I offer you a half-price piano lesson? You were such a great teammate it's the least I could do.",
       "read": false,
       "id": 4
     },
     {
       "userId": 2,
-      "recipientId": 6,
-      "read": false,
-      "text": "Where did you find that?",
-      "id": 5
-    },
-    {
-      "userId": 4,
-      "recipientId": 6,
-      "text": "Hi, Emily, I love your new gif",
-      "id": 6
-    },
-    {
-      "userId": 4,
       "recipientId": 1,
-      "text": "Ray, that Santa looks just like you.",
-      "read": true,
-      "id": 7
+      "read": false,
+      "text": "Hey you said it was double price for me to learn piano right? I guess that's okay just checking.",
+      "id": 5
     }
   ],
   "follows": [
