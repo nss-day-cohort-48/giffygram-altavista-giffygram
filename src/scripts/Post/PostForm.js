@@ -5,12 +5,12 @@ export const PostForm = () => {
   return /*html*/ `
     <div class="newPost">
       <div>
-        <input type="text" placeholder="Title:" name="postTitle"/>
+        <input type="text" placeholder="Title:" id="postTitle"/>
       </div>
       <div>
-        <input type="text" placeholder="GIF URL:" name="postImg"/>
+        <input type="text" placeholder="GIF URL:" id="postImg"/>
       </div>
-      <textarea placeholder="Description:" name="postDescription"></textarea>
+      <textarea placeholder="Description:" id="postDescription"></textarea>
       <div>
         <button id="submit__button">Submit</button> 
         <button id="cancel__button">Cancel</button>
@@ -18,7 +18,6 @@ export const PostForm = () => {
     </div>`;
 };
 
-// CREATING HTML FOR .miniMode
 export const MiniMode = () => {
   let html = `
   <div class="miniMode" id="miniMode">Have a gif to post?</div>
@@ -26,7 +25,6 @@ export const MiniMode = () => {
   return html;
 };
 
-// LINK TO CONTAINER
 const mainContainer = document.querySelector(".giffygram");
 
 mainContainer.addEventListener("click", (clickEvent) => {
@@ -36,16 +34,12 @@ mainContainer.addEventListener("click", (clickEvent) => {
   }
 });
 
-// Setter(dataAccess)SEND, conditional logic(FEED)READ
-
 mainContainer.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "submit__button") {
     const userId = parseInt(localStorage.getItem("gg_user"));
-    const title = document.querySelector("input[name='postTitle']").value;
-    const imageURL = document.querySelector("input[name='postImg']").value;
-    const description = document.querySelector(
-      "input[name='postDescription']"
-    ).value;
+    const title = document.querySelector("#postTitle").value;
+    const imageURL = document.querySelector("#postImg").value;
+    const description = document.querySelector("#postDescription").value;
 
     const result = newPost(userId, title, imageURL, description);
     // newPost returns a string if validation fails
