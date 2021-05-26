@@ -18,7 +18,8 @@ container.addEventListener("change", (event) => {
 
 container.addEventListener("change", (event) => {
   if (event.target.id === "userSelection") {
-    setDisplayByUser(event.target.id);
+    const [, userId] = event.target.value.split("--");
+    setDisplayByUser(parseInt(userId));
     container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
@@ -50,11 +51,14 @@ export const Footer = () => {
     </div>
     <div class="footer__item">Posts By User
     <select id="userSelection">
+    <option value="null">Select a user...</option>
     ${users
       .map((userObj) => {
         return `
-    <option value="user--${userObj.id}">
-    ${userObj.name}</option>
+    <option value="user--${userObj.id}" ${
+          feedState.chosenUser === userObj.id ? 'selected="selected"' : ""
+        }>
+    ${userObj.name} </option>
     `;
       })
       .join("")}
