@@ -1,3 +1,4 @@
+import {setRegistering} from "../data/dataAccess.js";
 import {getUsers} from "../User/UserProvider.js";
 
 document.addEventListener("click", (clickEvent) => {
@@ -19,6 +20,8 @@ document.addEventListener("click", (clickEvent) => {
       document
         .querySelector(".giffygram")
         .dispatchEvent(new CustomEvent("stateChanged"));
+    } else if (email && password) {
+      window.alert("User not found :(");
     }
   }
 });
