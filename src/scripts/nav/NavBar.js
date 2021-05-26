@@ -3,38 +3,39 @@ import {
   setDisplayDM,
   setDisplayMessage,
 } from "../data/dataAccess.js";
+import { getContainer } from "../GiffyGram.js";
 import {getUserMessages, howManyUnread} from "../Message/MessageProvider.js";
 
-const container = document.querySelector(".giffygram");
+const giffygram = getContainer()
 
-container.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logout") {
     localStorage.setItem("gg_user", "");
     clearFilters();
-    container.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
-container.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "directMessageIcon") {
     setDisplayDM(true);
     setDisplayMessage(true);
-    container.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
-container.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "notification__count") {
     setDisplayMessage(true);
-    container.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
-container.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "logo") {
     setDisplayMessage(false);
     setDisplayDM(false);
-    container.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 

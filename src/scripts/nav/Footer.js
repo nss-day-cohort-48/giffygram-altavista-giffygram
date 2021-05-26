@@ -4,30 +4,31 @@ import {
   setDisplayByYear,
   getFeedState,
 } from "../data/dataAccess.js";
+import { getContainer } from "../GiffyGram.js";
 import {postYear, getPosts} from "../Post/PostProvider.js";
 import {getUsers} from "../User/UserProvider.js";
 
-const container = document.querySelector(".giffygram");
+const giffygram = getContainer();
 
-container.addEventListener("change", (event) => {
+giffygram.addEventListener("change", (event) => {
   if (event.target.id === "yearSelection") {
     setDisplayByYear(parseInt(event.target.value));
-    container.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
-container.addEventListener("change", (event) => {
+giffygram.addEventListener("change", (event) => {
   if (event.target.id === "userSelection") {
     const [, userId] = event.target.value.split("--");
     setDisplayByUser(parseInt(userId));
-    container.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
-container.addEventListener("change", (event) => {
+giffygram.addEventListener("change", (event) => {
   if (event.target.id === "showOnlyFavorites") {
     toggleDisplayFavorites();
-    container.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
