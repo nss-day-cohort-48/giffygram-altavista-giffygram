@@ -26,6 +26,7 @@ document.addEventListener("click", (clickEvent) => {
   }
 });
 
+
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "registerButton") {
     setRegistering(true);
@@ -34,6 +35,13 @@ document.addEventListener("click", (clickEvent) => {
       .dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
+
+document.addEventListener("keypress", (event) => {
+  
+  if(event.code === "Enter") {
+    document.querySelector("#loginButton").click();
+  }
+})
 
 export const LoginForm = () => {
   return `
