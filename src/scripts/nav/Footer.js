@@ -1,23 +1,31 @@
-import {toggleDisplayFavorites, setDisplayByUser} from "../data/dataAccess.js";
-import {postYear, getUsers, getPosts} from "../Post/PostProvider.js";
+import {
+  toggleDisplayFavorites,
+  setDisplayByUser,
+  setDisplayByYear,
+  getFeedState,
+} from "../data/dataAccess.js";
+import {postYear, getPosts} from "../Post/PostProvider.js";
+import {getUsers} from "../User/UserProvider.js";
+
 const container = document.querySelector(".giffygram");
 
 container.addEventListener("change", (event) => {
   if (event.target.id === "yearSelection") {
-    //add the set export to this | setExample(parseInt(event.target.value))
+    setDisplayByYear(event.target.id);
+    container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
 container.addEventListener("change", (event) => {
   if (event.target.id === "userSelection") {
-    setDisplayByUser(parseInt(event.target.value));
+    setDisplayByUser(event.target.id);
     container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
 container.addEventListener("change", (event) => {
   if (event.target.id === "showOnlyFavorites") {
-    toggleDisplayFavorites(parseInt(event.target.value));
+    toggleDisplayFavorites();
     container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
@@ -25,6 +33,7 @@ container.addEventListener("change", (event) => {
 export const Footer = () => {
   const users = getUsers();
   const posts = getPosts();
+  const feedState = getFeedState();
   return `
     <footer class="footer">
     <div class="footer__item">Posts Since
@@ -53,7 +62,9 @@ export const Footer = () => {
     </select>
     </div>
     <div class="footer__item">Show Only Favorites
-    <input id="showOnlyFavorites" type="checkbox" />
+    <input id="showOnlyFavorites" type="checkbox" ${
+      feedState.displayFavorites ? "checked" : ""
+    }/>
     </div>
     </footer>
     `;
