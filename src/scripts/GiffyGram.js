@@ -1,17 +1,13 @@
-import {postFeed} from "./feed/PostList.js";
-import {DirectMessage} from "./Message/MessageForm.js";
+import {NavBar} from "./nav/NavBar.js";
+import {Inbox} from "./Message/inbox.js";
+import {Feed} from "./Post/Feed.js";
+import {getFeedState} from "./data/dataAccess.js";
 import {Footer} from "./nav/Footer.js";
 
 export const GiffyGram = () => {
-  // Show main main UI
   return `
-    <h1>Giffygram</h1>
-    <article class="direct__message">
-    ${DirectMessage()}
-    </article>
-    <article class="post__feed">
-    ${postFeed()}
-    </article>
-   <footer>${Footer()}</footer>
+  <nav>${NavBar()}</nav>
+    ${getFeedState().displayMessages ? Inbox() : Feed()}
+    <footer>${Footer()}</footer>
     `;
 };

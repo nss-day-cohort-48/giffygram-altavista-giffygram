@@ -1,4 +1,9 @@
-import {postMessage, rawMessages, rawUsers} from "../data/dataAccess.js";
+import {
+  postMessage,
+  rawMessages,
+  rawUsers,
+  patchMessage,
+} from "../data/dataAccess.js";
 
 // TODO more validation
 //      - does that userId exist?
@@ -23,6 +28,21 @@ export const getMessages = () => {
   return messages;
 };
 
+// get messages beloinging to current user
+export const getUserMessages = () =>
+  getMessages()
+    .filter((m) => m.recipientId === parseInt(localStorage.getItem("gg_user")))
+    .sort(byTimestamp);
+
+export const readMessage = (id) => patchMessage(id, {read: true});
+
+// use reduce to count unread messages starting from 0
+export const howManyUnread = (messagesArray) =>
+  messagesArray.reduce(countUnreads, 0);
+
+const countUnreads = (numberUnread, oneMessage) =>
+  oneMessage.read ? numberUnread : numberUnread + 1;
+
 const addUserNames = (messages, users) => {
   messages.map((m) => {
     if (m.userId) {
@@ -35,3 +55,6 @@ const addUserNames = (messages, users) => {
   });
   return messages;
 };
+
+// a sorting function that could be refactored with the one in PostProvider
+const byTimestamp = (objA, objB) => (objA.timestamp < objB.timestamp ? 1 : -1);

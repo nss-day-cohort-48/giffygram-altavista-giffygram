@@ -1,5 +1,6 @@
 const applicationElement = document.querySelector(".giffygram");
 
+// app state ==================================================================================>>
 const applicationState = {
   currentUser: {},
   feed: {
@@ -9,6 +10,8 @@ const applicationState = {
     chosenUser: null,
     displayByYear: false,
     chosenYear: null,
+    displayPostForm: false,
+    displayDM: false,
   },
   users: [],
   likes: [],
@@ -16,23 +19,47 @@ const applicationState = {
   messages: [],
 };
 
-// SETTERS ================================================================>>
+const initialFeedState = applicationState.feed;
+
+// helpers ====================================================================================>>
+const apiURL = "http://localhost:8081";
+const jsonPOST = (obj) => ({
+  headers: {"Content-Type": "application/json"},
+  method: "POST",
+  body: JSON.stringify(obj),
+});
+const jsonPATCH = (obj) => ({
+  headers: {"Content-Type": "application/json"},
+  method: "PATCH",
+  body: JSON.stringify(obj),
+});
+
+// SETTERS ====================================================================================>>
+export const clearFilters = () => {
+  applicationState.feed = initialFeedState;
+};
+
 export const toggleDisplayFavorites = () => {
-  applicationState.feed.displayFavorites =
-    !applicationState.feed.displayFavorites;
+  applicationState.feed.displayFavorites = !applicationState.feed.displayFavorites;
+};
+export const setDisplayDM = (bool) => {
+  applicationState.feed.displayDM = bool;
 };
 
 // to turn off, call without a null or invalid year
 export const setDisplayByYear = (year) => {
-  const foundYear = applicationState.posts.find(
+  year = parseInt(year);
+  const foundPost = applicationState.posts.find(
     (p) => new Date(p.timestamp).getFullYear() === year
   );
+  const foundYear = foundPost ? new Date(foundPost.timestamp).getFullYear() : null;
   if (foundYear) {
-    applicationState.feed.setDisplayByYear = true;
+    applicationState.feed.chosenYear = foundYear;
+    applicationState.feed.displayByYear = true;
   } else {
-    applicationState.feed.setDisplayByYear = false;
+    applicationState.feed.displayByYear = false;
+    applicationState.feed.chosenYear = null;
   }
-  applicationState.feed.chosenYear = foundYear;
 };
 
 // to turn off, call without a null or invalid id
@@ -54,86 +81,57 @@ export const setDisplayMessage = (bool) => {
   applicationState.feed.displayMessages = bool;
 };
 
-// GETTERS ================================================================>>
-export const feedState = () => ({...applicationState.feed});
+export const setDisplayPostForm = (bool) => {
+  applicationState.feed.displayPostForm = bool;
+};
+
+// GETTERS ====================================================================================>>
+export const getFeedState = () => ({...applicationState.feed});
 export const rawUsers = () => applicationState.users.map((user) => ({...user}));
 export const rawPosts = () => applicationState.posts.map((post) => ({...post}));
 export const rawLikes = () => applicationState.likes.map((like) => ({...like}));
-export const rawMessages = () => applicationState.messages.map((m) => ({...m}));
+export const rawMessages = () => applicationState.messages.map((message) => ({...message}));
 
-// fetch stuff
-const apiURL = "http://localhost:8081";
+// FETCHES ==================================================================================>>
+// prettier-ignore
+export const fetchAll = () => 
+  fetchUsers()
+    .then(fetchPosts)
+    .then(fetchLikes)
+    .then(fetchMessages);
 
-// fetch GET ==============================================================>>
-export const fetchAll = () =>
-  fetchUsers().then(fetchPosts).then(fetchLikes).then(fetchMessages);
-
-const fetchPosts = () => {
-  return fetch(`${apiURL}/posts`)
+// prettier-ignore
+const fetchPosts = () => 
+  fetch(`${apiURL}/posts`)
     .then((response) => response.json())
     .then((data) => (applicationState.posts = data));
-};
 
-const fetchLikes = () => {
-  return fetch(`${apiURL}/likes`)
+// prettier-ignore
+const fetchLikes = () => 
+  fetch(`${apiURL}/likes`)
     .then((response) => response.json())
     .then((data) => (applicationState.likes = data));
-};
 
-const fetchUsers = () => {
-  return fetch(`${apiURL}/users`)
+// prettier-ignore
+const fetchUsers = () =>
+  fetch(`${apiURL}/users`)
     .then((response) => response.json())
     .then((data) => (applicationState.users = data));
-};
 
-const fetchMessages = () => {
-  return fetch(`${apiURL}/messages`)
+// prettier-ignore
+const fetchMessages = () => 
+  fetch(`${apiURL}/messages`)
     .then((response) => response.json())
     .then((data) => (applicationState.messages = data));
-};
 
-// since we don't have a like provider, we build the object here
-// TODO: validate that the post exists
-export const newLike = (userId, postId) => {
-  if (userId && postId) {
-    return postLike({userId: userId, postId: postId});
-  }
-  return "like incomplete";
-};
+export const deleteLike = (id) => fetch(`${apiURL}/likes/${id}`, {method: "DELETE"});
+export const deletePost = (id) => fetch(`${apiURL}/posts/${id}`, {method: "DELETE"});
 
-// since we don't have a follow provider, we build the object here
-// TODO: validate that someone isn't trying to follow themselves
-export const newFollow = (userId, followingId) => {
-  if (userId && followingId) {
-    postFollow({userId: userId, followingId: followingId});
-  }
-  return "follow incomplete";
-};
+export const postUser = (userObj) => fetch(`${apiURL}/users`, jsonPOST(userObj));
+export const postPost = (postObj) => fetch(`${apiURL}/posts`, jsonPOST(postObj));
+export const postLike = (likeObj) => fetch(`${apiURL}/likes`, jsonPOST(likeObj));
+export const postMessage = (messageObj) => fetch(`${apiURL}/messages`, jsonPOST(messageObj));
+export const postFollow = (followObj) => fetch(`${apiURL}/follows`, jsonPOST(followObj));
 
-// fetch POST ==============================================================>>
-// helper function for creating POSTable JSON objects
-const jsonPOST = (obj) => ({
-  headers: {"Content-Type": "application/json"},
-  method: "POST",
-  body: JSON.stringify(obj),
-});
-
-export const postUser = (userObj) => {
-  return fetch(`${apiURL}/users`, jsonPOST(userObj));
-};
-
-export const postMessage = (messageObj) => {
-  return fetch(`${apiURL}/messages`, jsonPOST(messageObj));
-};
-
-export const postPost = (postObj) => {
-  return fetch(`${apiURL}/posts`, jsonPOST(postObj));
-};
-
-const postLike = (likeObj) => {
-  return fetch(`${apiURL}/likes`, jsonPOST(likeObj));
-};
-
-const postFollow = (followObj) => {
-  return fetch(`${apiURL}/follows`, jsonPOST(followObj));
-};
+// PATCH requires only the keys that you want to update
+export const patchMessage = (id, changes) => fetch(`${apiURL}/messages/${id}`, jsonPATCH(changes));
