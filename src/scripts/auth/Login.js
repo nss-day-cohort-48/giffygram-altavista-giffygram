@@ -23,6 +23,16 @@ document.addEventListener("click", (clickEvent) => {
   }
 });
 
+var input = document.getElementById("loginButton");
+
+input.addEventListener("keypress", (event) => {
+  
+  if(event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("loginButton").click();
+  }
+})
+
 export const LoginForm = () => {
   return `
         <div class="loginForm">
