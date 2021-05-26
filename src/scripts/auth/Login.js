@@ -23,13 +23,12 @@ document.addEventListener("click", (clickEvent) => {
   }
 });
 
-var input = document.getElementById("loginButton");
 
-input.addEventListener("keypress", (event) => {
+
+document.addEventListener("keypress", (event) => {
   
-  if(event.keyCode === 13) {
-    event.preventDefault();
-    document.getElementById("loginButton").click();
+  if(event.code === "Enter") {
+    document.querySelector("#loginButton").click();
   }
 })
 
