@@ -118,14 +118,14 @@
     },
     {
       "userId": 1,
-      "recipientId": 3,
+      "recipientId": 2,
       "text": "Val where the heck did you go today? You were gone for hours!",
       "read": false,
       "id": 3
     },
     {
       "userId": 1,
-      "recipientId": 2,
+      "recipientId": 3,
       "text": "Can I offer you a half-price piano lesson? You were such a great teammate it's the least I could do.",
       "read": false,
       "id": 4
