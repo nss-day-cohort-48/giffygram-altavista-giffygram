@@ -11,7 +11,7 @@ const container = document.querySelector(".giffygram");
 
 container.addEventListener("change", (event) => {
   if (event.target.id === "yearSelection") {
-    setDisplayByYear(event.target.id);
+    setDisplayByYear(parseInt(event.target.value));
     container.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
@@ -35,15 +35,26 @@ export const Footer = () => {
   const users = getUsers();
   const posts = getPosts();
   const feedState = getFeedState();
+  // use a set because they don't allow duplicates
+  let allYears = new Set();
+  posts.forEach((p) => {
+    allYears.add(postYear(p));
+  });
+  // convert our set to an array that is sorted
+  allYears = [...allYears].sort();
+
   return `
     <footer class="footer">
     <div class="footer__item">Posts Since
     <select id="yearSelection">
-    ${posts
-      .map((postObj) => {
+    <option value="null">Year...</option>
+    ${allYears
+      .map((year) => {
         return `
-      <option value="post--${postObj.id}">
-      ${postYear(postObj)}</option>
+      <option value="${year}" ${
+          feedState.chosenYear === year ? 'selected="selected"' : ""
+        }>
+      ${year}</option>
       `;
       })
       .join("")}
