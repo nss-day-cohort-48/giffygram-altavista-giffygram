@@ -1,11 +1,11 @@
-import {setRegistering} from "../data/dataAccess.js";
+import {setRegistering} from "../main.js";
 import {getUsers, newUser} from "../User/UserProvider.js";
 
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "cancelButton") {
     setRegistering(false);
     document
-      .querySelector(".giffygram")
+      .querySelector("#giffygram")
       .dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
@@ -28,7 +28,7 @@ document.addEventListener("click", (clickEvent) => {
             localStorage.setItem("gg_user", newUser.id);
             setRegistering(false);
             document
-              .querySelector(".giffygram")
+              .querySelector("#giffygram")
               .dispatchEvent(new CustomEvent("stateChanged"));
           });
   }

@@ -7,11 +7,12 @@ import {getUsers} from "./User/UserProvider.js";
 import {getFeedPosts, getPosts} from "./Post/PostProvider.js";
 import {makeTesters} from "./testers.js";
 
-const giffygram = document.querySelector("#giffygram")
+// this is UGLY but it works?
+let registering = false;
+export const setRegistering = (bool) => (registering = bool);
 
 export const renderApp = () => {
   const user = parseInt(localStorage.getItem("gg_user"));
-  const registering = getFeedState().registering;
 
   if (user) {
     giffygram.innerHTML = GiffyGram();
@@ -33,9 +34,10 @@ export const renderApp = () => {
 };
 
 const fetchAndRender = () => fetchAll().then(renderApp);
+document
+  .querySelector("#giffygram")
+  .addEventListener("stateChanged", fetchAndRender);
 
 fetchAndRender();
-
-giffygram.addEventListener("stateChanged", fetchAndRender);
 
 makeTesters();

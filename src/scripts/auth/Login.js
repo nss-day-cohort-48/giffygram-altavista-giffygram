@@ -1,4 +1,4 @@
-import {setRegistering} from "../data/dataAccess.js";
+import {setRegistering} from "../main.js";
 import {getUsers} from "../User/UserProvider.js";
 
 document.addEventListener("click", (clickEvent) => {
@@ -18,7 +18,7 @@ document.addEventListener("click", (clickEvent) => {
     if (foundUser !== null) {
       localStorage.setItem("gg_user", foundUser.id);
       document
-        .querySelector(".giffygram")
+        .querySelector("#giffygram")
         .dispatchEvent(new CustomEvent("stateChanged"));
     } else if (email && password) {
       window.alert("User not found :(");
@@ -26,22 +26,20 @@ document.addEventListener("click", (clickEvent) => {
   }
 });
 
-
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "registerButton") {
     setRegistering(true);
     document
-      .querySelector(".giffygram")
+      .querySelector("#giffygram")
       .dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
 document.addEventListener("keypress", (event) => {
-  
-  if(event.code === "Enter") {
+  if (event.code === "Enter") {
     document.querySelector("#loginButton").click();
   }
-})
+});
 
 export const LoginForm = () => {
   return `
