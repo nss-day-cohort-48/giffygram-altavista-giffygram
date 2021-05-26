@@ -52,7 +52,7 @@ export const RegisterForm = () => {
                 </fieldset>
             </form>
             <div class="buttons" style="display: flex;">
-              <button id="registerButton">Register</button>
+              <button id="registerButton">Create Account</button>
               <button id="cancelButton">Cancel</button>
             </div>
         </div>
