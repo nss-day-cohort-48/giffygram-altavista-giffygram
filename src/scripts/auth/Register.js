@@ -26,6 +26,7 @@ document.addEventListener("click", (clickEvent) => {
           .then((res) => res.json())
           .then((newUser) => {
             localStorage.setItem("gg_user", newUser.id);
+            setRegistering(false);
             document
               .querySelector(".giffygram")
               .dispatchEvent(new CustomEvent("stateChanged"));

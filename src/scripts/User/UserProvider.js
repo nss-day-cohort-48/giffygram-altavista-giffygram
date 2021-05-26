@@ -10,7 +10,7 @@ export const getUsers = () => {
 };
 
 export const newUser = (name, email, password) => {
-  if (!name || !email || !password) {
+  if (name && email && password) {
     return postUser({
       name: name,
       email: email,
