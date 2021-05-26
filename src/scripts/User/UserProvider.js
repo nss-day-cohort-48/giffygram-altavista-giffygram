@@ -1,5 +1,7 @@
 import {postUser, rawLikes, rawPosts, rawUsers} from "../data/dataAccess.js";
 
+export const getUserById = (userid) => rawUsers().find((u) => u.id === userid);
+
 export const getUsers = () => {
   let users = rawUsers();
 
