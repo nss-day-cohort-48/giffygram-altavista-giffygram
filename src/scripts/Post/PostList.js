@@ -1,8 +1,11 @@
 import {deletePost} from "../data/dataAccess.js";
 import {toggleLike} from "../Like/LikeProvider.js";
 import {getFeedPosts} from "./PostProvider.js";
+import {getContainer} from "../GiffyGram.js";
 
-document.querySelector(".giffygram").addEventListener("click", (e) => {
+const giffygram = document.querySelector("#giffygram")
+
+giffygram.addEventListener("click", (e) => {
   if (e.target.id.startsWith("post__favorite")) {
     let [, postId] = e.target.id.split("--");
     postId = parseInt(postId);
@@ -10,21 +13,15 @@ document.querySelector(".giffygram").addEventListener("click", (e) => {
     // toggleLike returns a string if validation fails
     typeof result === "string"
       ? window.alert(result)
-      : result.then(
-          document
-            .querySelector(".giffygram")
-            .dispatchEvent(new CustomEvent("stateChanged"))
-        );
+      : result.then(giffygram.dispatchEvent(new CustomEvent("stateChanged")));
   }
 });
 
-document.querySelector(".giffygram").addEventListener("click", (click) => {
+giffygram.addEventListener("click", (click) => {
   if (click.target.id.startsWith("post__delete--")) {
     const [, postId] = click.target.id.split("--");
     deletePost(parseInt(postId)).then(
-      document
-        .querySelector(".giffygram")
-        .dispatchEvent(new CustomEvent("stateChanged"))
+      giffygram.dispatchEvent(new CustomEvent("stateChanged"))
     );
   }
 });

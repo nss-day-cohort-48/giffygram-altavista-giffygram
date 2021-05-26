@@ -1,24 +1,24 @@
 import {LoginForm} from "./auth/Login.js";
 import {RegisterForm} from "./auth/Register.js";
 import {getFeedState, fetchAll} from "./data/dataAccess.js";
-import {GiffyGram} from "./GiffyGram.js";
+import {getContainer, GiffyGram} from "./GiffyGram.js";
 import {getMessages} from "./Message/MessageProvider.js";
 import {getUsers} from "./User/UserProvider.js";
 import {getFeedPosts, getPosts} from "./Post/PostProvider.js";
 import {makeTesters} from "./testers.js";
 
-const applicationElement = document.querySelector(".giffygram");
+const giffygram = document.querySelector("#giffygram")
 
 export const renderApp = () => {
   const user = parseInt(localStorage.getItem("gg_user"));
   const registering = getFeedState().registering;
 
   if (user) {
-    applicationElement.innerHTML = GiffyGram();
+    giffygram.innerHTML = GiffyGram();
   } else if (registering) {
-    applicationElement.innerHTML = RegisterForm();
+    giffygram.innerHTML = RegisterForm();
   } else {
-    applicationElement.innerHTML = LoginForm();
+    giffygram.innerHTML = LoginForm();
   }
 
   console.log("Just rendered!");
@@ -36,6 +36,6 @@ const fetchAndRender = () => fetchAll().then(renderApp);
 
 fetchAndRender();
 
-applicationElement.addEventListener("stateChanged", fetchAndRender);
+giffygram.addEventListener("stateChanged", fetchAndRender);
 
 makeTesters();

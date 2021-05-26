@@ -1,4 +1,5 @@
 import {setDisplayPostForm} from "../data/dataAccess.js";
+import {getContainer} from "../GiffyGram.js";
 import {newPost} from "./PostProvider.js";
 
 export const PostForm = () => {
@@ -25,16 +26,16 @@ export const MiniMode = () => {
   return html;
 };
 
-const mainContainer = document.querySelector(".giffygram");
+const giffygram = document.querySelector("#giffygram")
 
-mainContainer.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "miniMode") {
     setDisplayPostForm(true);
-    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
 
-mainContainer.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "submit__button") {
     const userId = parseInt(localStorage.getItem("gg_user"));
     const title = document.querySelector("#postTitle").value;
@@ -46,14 +47,14 @@ mainContainer.addEventListener("click", (clickEvent) => {
     typeof result === "string"
       ? window.alert(result)
       : result.then(() => {
-          mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+          giffygram.dispatchEvent(new CustomEvent("stateChanged"));
         });
   }
 });
 
-mainContainer.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "cancel__button") {
     setDisplayPostForm(false);
-    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
