@@ -1,4 +1,4 @@
-import {getUsers} from "../User/UserProvider.js";
+ import { getUsers } from "../User/UserProvider.js"
 
 document.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "loginButton") {
