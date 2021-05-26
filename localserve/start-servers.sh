@@ -21,19 +21,19 @@ pid_of() {
 set -e
 
 # init stuff
-echo "Clearing the json-server log file: $JSRV_LOGFILE"     && echo "" > $JSRV_LOGFILE
+#echo "Clearing the json-server log file: $JSRV_LOGFILE"     && echo "" > $JSRV_LOGFILE
 echo "Clearing the serve log file: $SRV_LOGFILE"            && echo "" > $SRV_LOGFILE
 echo
 
 # clear out stuck processes that might interfere with serving
 SERVE8081=$(pid_of "serve.*-l 8081")
 [[ -n $SERVE8081 ]] && pkill $SERVE8081
-
 # serve it up and alert user of ports
 serve -n -l $SRV_PORT $SRV_SRCDIR > $SRV_LOGFILE 2>&1 & 
 echo "Started 'serve' on port $SRV_PORT -- see $SRV_LOGFILE for more details"
-json-server -p $JSRV_PORT --watch $JSRV_DBFILE > $JSRV_LOGFILE 2>&1 & 
-echo "Started 'json-server' on port $JSRV_PORT -- see $JSRV_LOGFILE for more details"
+echo USING REMOTE API -- TURN WIREGUARD ON
+#json-server -p $JSRV_PORT --watch $JSRV_DBFILE > $JSRV_LOGFILE 2>&1 & 
+#echo "Started 'json-server' on port $JSRV_PORT -- see $JSRV_LOGFILE for more details"
 
 # go time!!!
 echo
