@@ -1,14 +1,11 @@
-import {setDisplayDM} from "./data/dataAccess.js";
+import {NavBar} from "./nav/NavBar.js";
 import {Inbox} from "./Message/inbox.js";
 import {Feed} from "./Post/Feed.js";
-
-setDisplayDM(true); // FOR TESTING
+import {getFeedState} from "./data/dataAccess.js";
 
 export const GiffyGram = () => {
-  // Show main main UI
-  const showInbox = true; // FOR TESTING
   return `
-    <h1>Giffygram</h1>
-    ${showInbox ? Inbox() : Feed()}
+  <nav>${NavBar()}</nav>
+    ${getFeedState().displayMessages ? Inbox() : Feed()}
     `;
 };

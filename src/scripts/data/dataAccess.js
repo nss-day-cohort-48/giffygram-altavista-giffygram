@@ -19,6 +19,8 @@ const applicationState = {
   messages: [],
 };
 
+const initialFeedState = applicationState.feed;
+
 // helpers ====================================================================================>>
 const apiURL = "http://localhost:8081";
 const jsonPOST = (obj) => ({
@@ -33,6 +35,10 @@ const jsonPATCH = (obj) => ({
 });
 
 // SETTERS ====================================================================================>>
+export const clearFilters = () => {
+  applicationState.feed = initialFeedState;
+};
+
 export const toggleDisplayFavorites = () => {
   applicationState.feed.displayFavorites = !applicationState.feed.displayFavorites;
 };
