@@ -1,5 +1,3 @@
-const applicationElement = document.querySelector(".giffygram");
-
 // app state ==================================================================================>>
 const applicationState = {
   currentUser: {},

@@ -63,3 +63,7 @@
 #directMessageIcon {
   cursor: pointer;
 }
+
+.navigation__currentUser {
+  margin-right: 2em;
+}

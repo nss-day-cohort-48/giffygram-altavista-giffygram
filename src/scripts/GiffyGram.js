@@ -4,6 +4,8 @@ import {Feed} from "./Post/Feed.js";
 import {getFeedState} from "./data/dataAccess.js";
 import {Footer} from "./nav/Footer.js";
 
+export const getContainer = () => document.querySelector("#giffygram");
+
 export const GiffyGram = () => {
   return `
   <nav>${NavBar()}</nav>
