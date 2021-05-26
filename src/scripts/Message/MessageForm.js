@@ -1,6 +1,7 @@
 import {newMessage} from "./MessageProvider.js";
 import {getUsers} from "../User/UserProvider.js";
 import {setDisplayDM} from "../data/dataAccess.js";
+import { getContainer } from "../GiffyGram.js";
 
 export const DirectMessage = () => {
   return /*html*/ `
@@ -32,9 +33,9 @@ const selectUsers = () =>
     })
     .join("");
 
-const mainContainer = document.querySelector(".giffygram");
+const giffygram = getContainer();
 
-mainContainer.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "dm__save") {
     // newMessage(userId, recipientId, text)
     const result = newMessage(
@@ -46,14 +47,14 @@ mainContainer.addEventListener("click", (clickEvent) => {
       ? window.alert(result)
       : result.then(() => {
           setDisplayDM(false);
-          mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+          giffygram.dispatchEvent(new CustomEvent("stateChanged"));
         });
   }
 });
 
-mainContainer.addEventListener("click", (clickEvent) => {
+giffygram.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "dm__cancel") {
     setDisplayDM(false);
-    mainContainer.dispatchEvent(new CustomEvent("stateChanged"));
+    giffygram.dispatchEvent(new CustomEvent("stateChanged"));
   }
 });
